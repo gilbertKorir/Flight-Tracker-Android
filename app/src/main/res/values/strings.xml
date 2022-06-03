@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Flight Tracking</string>
+    <string name="country" />
+</resources>
