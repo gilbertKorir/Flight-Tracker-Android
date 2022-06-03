@@ -1,14 +1,15 @@
-package com.example.flighttracking;
+package com.example.flighttracking.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.flighttracking.Constants;
+import com.example.flighttracking.adapters.MyCountryAdapter;
+import com.example.flighttracking.R;
 import com.example.flighttracking.models.CountrySearchResponse;
-import com.example.flighttracking.models.Geo;
 import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
 
