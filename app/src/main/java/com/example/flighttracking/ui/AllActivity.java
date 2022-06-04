@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import com.example.flighttracking.R;
 import com.example.flighttracking.adapters.MyViewPagerAdapter;
@@ -18,6 +19,8 @@ public class AllActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+        getSupportActionBar().hide(); //hide the title bar
         setContentView(R.layout.activity_all);
 
         tabLayout = findViewById(R.id.tablayout);
@@ -28,7 +31,7 @@ public class AllActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                viewPager2.setCurrentItem(tab.getPosition());
             }
 
             @Override

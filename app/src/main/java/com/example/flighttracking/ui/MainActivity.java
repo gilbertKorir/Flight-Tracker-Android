@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mFindCountry) {
-            Intent intent = new Intent(MainActivity.this, FlightsActivity.class);
+            Intent intent = new Intent(MainActivity.this, AllActivity.class);
             startActivity(intent);
         }
     }

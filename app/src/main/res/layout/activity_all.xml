@@ -4,12 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.AllActivity">
+    tools:context=".ui.AllActivity"
+    android:background="@color/white">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:tabTextAppearance="@style/MineCustomTabText"
+        app:tabTextColor="@color/white"
+        android:background="@color/purple_700">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
