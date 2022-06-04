@@ -24,19 +24,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/codeCountry"
-            android:layout_width="86dp"
-            android:layout_height="29dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="325dp"
-            android:layout_marginBottom="5dp"
-            android:text="TextView"
-            android:textColor="#DA1F5F"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
             android:id="@+id/textView2"
             android:layout_width="31dp"
             android:layout_height="24dp"
@@ -62,15 +49,15 @@
             android:id="@+id/icao"
             android:layout_width="32dp"
             android:layout_height="22dp"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="20dp"
             android:text="icao:"
             android:textColor="#DA1F5F"
             app:layout_constraintStart_toEndOf="@+id/iata"
             app:layout_constraintTop_toBottomOf="@+id/airportView" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/icaocode"
             android:layout_width="69dp"
             android:layout_height="26dp"
             android:layout_marginStart="8dp"
@@ -83,11 +70,48 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="Lat:"
+            android:textColor="#E91E63"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/latitude"
+            android:layout_width="74dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="19dp"
             android:text="TextView"
-            tools:layout_editor_absoluteX="7dp"
-            tools:layout_editor_absoluteY="107dp" />
+            android:textColor="#E91E63"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/iata" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="34dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
+            android:text="Long:"
+            android:textColor="#E91E63"
+            app:layout_constraintStart_toStartOf="@+id/icao"
+            app:layout_constraintTop_toBottomOf="@+id/icao" />
+
+        <TextView
+            android:id="@+id/longitude"
+            android:layout_width="71dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="22dp"
+            android:text="TextView"
+            android:textColor="#E91E63"
+            app:layout_constraintStart_toStartOf="@+id/icaocode"
+            app:layout_constraintTop_toBottomOf="@+id/icaocode" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
