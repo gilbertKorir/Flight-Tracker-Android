@@ -31,8 +31,7 @@ import retrofit2.Response;
 public class CountryFragment extends Fragment {
 
     private MyCountryAdapter mDisplayAdapter;
-    @BindView(R.id.recyclerview)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.recyclerview) RecyclerView mRecyclerView;
 
     public CountryFragment() {
         // Required empty public constructor
