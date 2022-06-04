@@ -37,7 +37,7 @@ public class MyAirportAdapter extends RecyclerView.Adapter<MyAirportAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        holder.bindCountry(responses.get(position));
     }
 
     @Override
