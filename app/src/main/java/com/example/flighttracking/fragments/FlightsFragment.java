@@ -37,8 +37,7 @@ import retrofit2.Response;
  */
 public class FlightsFragment extends Fragment {
 
-    private MyCountryAdapter mDisplayAdapter;
-    @BindView(R.id.recyclerview) RecyclerView mRecyclerView;
+
 
     public FlightsFragment() {
         // Required empty public constructor
@@ -66,31 +65,5 @@ public class FlightsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_flights, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
-        AirApi client = AirClient.getClient();
-        Call<CountrySearchResponse> call = client.getCountry(Constants.AIR_API_KEY);
 
-        call.enqueue(new Callback<CountrySearchResponse>() {
-
-            @Override
-            public void onResponse(Call<CountrySearchResponse> call, Response<CountrySearchResponse> response) {
-
-                List<com.example.flighttracking.models.Response> mList = response.body().getResponse();
-
-                MyCountryAdapter myCountryAdapter = new MyCountryAdapter(mRecyclerView.getContext(), mList);
-                mRecyclerView.setAdapter(myCountryAdapter);
-//                   myCountryAdapter.setResultList(mList);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-            }
-
-            @Override
-            public void onFailure(Call<CountrySearchResponse> call, Throwable t) {
-
-            }
-        });
-    }
 }

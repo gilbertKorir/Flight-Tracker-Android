@@ -2,49 +2,44 @@ package com.example.flighttracking.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
+import com.example.flighttracking.adapters.MyCountryAdapter;
+import com.example.flighttracking.models.CountrySearchResponse;
+import com.example.flighttracking.network.AirApi;
+import com.example.flighttracking.network.AirClient;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CountryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class CountryFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private MyCountryAdapter mDisplayAdapter;
+    @BindView(R.id.recyclerview)
+    RecyclerView mRecyclerView;
 
     public CountryFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CountryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CountryFragment newInstance(String param1, String param2) {
         CountryFragment fragment = new CountryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -52,8 +47,7 @@ public class CountryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -62,5 +56,32 @@ public class CountryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_country, container, false);
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        AirApi client = AirClient.getClient();
+        Call<CountrySearchResponse> call = client.getCountry(Constants.AIR_API_KEY);
+
+        call.enqueue(new Callback<CountrySearchResponse>() {
+
+            @Override
+            public void onResponse(Call<CountrySearchResponse> call, Response<CountrySearchResponse> response) {
+
+                List<com.example.flighttracking.models.Response> mList = response.body().getResponse();
+
+                MyCountryAdapter myCountryAdapter = new MyCountryAdapter(mRecyclerView.getContext(), mList);
+                mRecyclerView.setAdapter(myCountryAdapter);
+//                   myCountryAdapter.setResultList(mList);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            }
+
+            @Override
+            public void onFailure(Call<CountrySearchResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
