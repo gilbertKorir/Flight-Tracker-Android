@@ -23,8 +23,8 @@ import retrofit2.Response;
 
 public class FlightsActivity extends AppCompatActivity {
 
-    private MyCountryAdapter mDisplayAdapter;
-    @BindView(R.id.recyclerview) RecyclerView mRecyclerView;
+//    private MyCountryAdapter mDisplayAdapter;
+//    @BindView(R.id.recyclerview) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +43,10 @@ public class FlightsActivity extends AppCompatActivity {
 
                     List<com.example.flighttracking.models.Response> mList = response.body().getResponse();
 
-                   MyCountryAdapter myCountryAdapter = new MyCountryAdapter(FlightsActivity.this, mList);
-                   mRecyclerView.setAdapter(myCountryAdapter);
-//                   myCountryAdapter.setResultList(mList);
-                   mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                   MyCountryAdapter myCountryAdapter = new MyCountryAdapter(FlightsActivity.this, mList);
+//                   mRecyclerView.setAdapter(myCountryAdapter);
+////                   myCountryAdapter.setResultList(mList);
+//                   mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                }
             }
 

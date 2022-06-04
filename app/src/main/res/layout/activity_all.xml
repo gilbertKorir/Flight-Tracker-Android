@@ -24,17 +24,23 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Airports"></com.google.android.material.tabs.TabItem>
+            android:text="Airports">
+
+        </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Countries"></com.google.android.material.tabs.TabItem>
+            android:text="Countries">
+
+        </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Flights"></com.google.android.material.tabs.TabItem>
+            android:text="Flights">
+
+        </com.google.android.material.tabs.TabItem>
 
 
     </com.google.android.material.tabs.TabLayout>
@@ -43,6 +49,9 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tablayout"></androidx.viewpager2.widget.ViewPager2>
+        android:layout_below="@id/tablayout">
+
+
+    </androidx.viewpager2.widget.ViewPager2>
 
 </RelativeLayout>
