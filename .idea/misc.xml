@@ -8,7 +8,9 @@
         <entry key="app/src/main/res/layout/activity_flights.xml" value="0.11775362318840579" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/displaycountry.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_flights.xml" value="0.12817028985507245" />
+        <entry key="app/src/main/res/layout/fragment_airports.xml" value="0.12817028985507245" />
+        <entry key="app/src/main/res/layout/fragment_country.xml" value="0.12817028985507245" />
+        <entry key="app/src/main/res/layout/fragment_flights.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19375" />
       </map>
     </option>

@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
 import com.example.flighttracking.adapters.MyCountryAdapter;
-import com.example.flighttracking.models.CountrySearchResponse;
+import com.example.flighttracking.models.country.CountrySearchResponse;
 import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
 
@@ -69,7 +69,7 @@ public class CountryFragment extends Fragment {
             @Override
             public void onResponse(Call<CountrySearchResponse> call, Response<CountrySearchResponse> response) {
 
-                List<com.example.flighttracking.models.Response> mList = response.body().getResponse();
+                List<com.example.flighttracking.models.country.Response> mList = response.body().getResponse();
 
                 MyCountryAdapter myCountryAdapter = new MyCountryAdapter(mRecyclerView.getContext(), mList);
                 mRecyclerView.setAdapter(myCountryAdapter);

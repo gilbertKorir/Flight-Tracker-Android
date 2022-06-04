@@ -1,6 +1,6 @@
 package com.example.flighttracking.network;
 
-import com.example.flighttracking.models.CountrySearchResponse;
+import com.example.flighttracking.models.country.CountrySearchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

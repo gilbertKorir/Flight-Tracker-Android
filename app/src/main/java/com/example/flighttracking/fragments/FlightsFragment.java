@@ -2,33 +2,15 @@ package com.example.flighttracking.fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
-import com.example.flighttracking.adapters.MyCountryAdapter;
-import com.example.flighttracking.models.CountrySearchResponse;
-import com.example.flighttracking.network.AirApi;
-import com.example.flighttracking.network.AirClient;
-import com.example.flighttracking.ui.AllActivity;
 //import com.example.flighttracking.ui.FlightsActivity;
 
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.

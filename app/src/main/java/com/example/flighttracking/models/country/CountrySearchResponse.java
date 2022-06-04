@@ -1,5 +1,5 @@
 
-package com.example.flighttracking.models;
+package com.example.flighttracking.models.country;
 
 import java.util.List;
 

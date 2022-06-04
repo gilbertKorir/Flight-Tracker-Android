@@ -1,21 +1,17 @@
 package com.example.flighttracking.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
 import com.example.flighttracking.Constants;
-import com.example.flighttracking.adapters.MyCountryAdapter;
 import com.example.flighttracking.R;
-import com.example.flighttracking.models.CountrySearchResponse;
+import com.example.flighttracking.models.country.CountrySearchResponse;
 import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
 
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +37,7 @@ public class FlightsActivity extends AppCompatActivity {
 
                 if(response.isSuccessful()){
 
-                    List<com.example.flighttracking.models.Response> mList = response.body().getResponse();
+                    List<com.example.flighttracking.models.country.Response> mList = response.body().getResponse();
 
 //                   MyCountryAdapter myCountryAdapter = new MyCountryAdapter(FlightsActivity.this, mList);
 //                   mRecyclerView.setAdapter(myCountryAdapter);
