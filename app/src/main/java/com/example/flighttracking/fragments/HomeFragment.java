@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    @BindView(R.id.book) CardView mBook;
+   @BindView(R.id.book) CardView mBook;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
-//            Intent intent = new Intent(, BookingActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getContext(), BookingActivity.class);
+            startActivity(intent);
     }
 }
