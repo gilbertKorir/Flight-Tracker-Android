@@ -53,7 +53,7 @@
         android:id="@+id/textView4"
         android:layout_width="59dp"
         android:layout_height="31dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="68dp"
         android:text="FROM:"
         app:layout_constraintEnd_toStartOf="@+id/startingPoint"
@@ -98,10 +98,11 @@
         android:id="@+id/textView12"
         android:layout_width="55dp"
         android:layout_height="30dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="34dp"
         android:text="DEPART:"
         app:layout_constraintEnd_toStartOf="@+id/departDate"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -111,8 +112,8 @@
         android:layout_height="48dp"
         android:layout_marginTop="18dp"
         android:ems="10"
+        android:hint="Date"
         android:inputType="textPersonName"
-        android:text="Date"
         app:layout_constraintEnd_toEndOf="@+id/endPoint"
         app:layout_constraintStart_toStartOf="@+id/endPoint"
         app:layout_constraintTop_toBottomOf="@+id/endPoint" />
@@ -132,10 +133,44 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Date return"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Date"
         app:layout_constraintEnd_toEndOf="@+id/departDate"
         app:layout_constraintStart_toStartOf="@+id/departDate"
         app:layout_constraintTop_toBottomOf="@+id/departDate" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="234dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="182dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/returnDate" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="40dp"
+        android:text="ECONOMY:"
+        app:layout_constraintStart_toStartOf="@+id/df"
+        app:layout_constraintTop_toBottomOf="@+id/df" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Class"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/returnDate"
+        app:layout_constraintStart_toStartOf="@+id/returnDate"
+        app:layout_constraintTop_toBottomOf="@+id/returnDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>
