@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mycard"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,9 +15,10 @@
         <TextView
             android:id="@+id/airportView"
             android:layout_width="238dp"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
+            android:gravity="center"
             android:text="view country"
             android:textColor="#DA1F5F"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +29,7 @@
             android:id="@+id/textView2"
             android:layout_width="31dp"
             android:layout_height="24dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:text="iata:"
             android:textColor="#DA1F5F"
@@ -72,14 +74,14 @@
             android:id="@+id/textView6"
             android:layout_width="36dp"
             android:layout_height="25dp"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="5dp"
             android:text="Lat:"
             android:textColor="#E91E63"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.615" />
 
         <TextView
             android:id="@+id/latitude"
@@ -96,7 +98,6 @@
             android:id="@+id/textView8"
             android:layout_width="34dp"
             android:layout_height="25dp"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="24dp"
             android:text="Long:"
             android:textColor="#E91E63"

@@ -24,7 +24,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="91dp"
+        android:layout_height="114dp"
         android:layout_marginTop="160dp"
         android:background="#FFC107">
 
@@ -57,11 +57,12 @@
             android:id="@+id/cardView"
             android:layout_width="190dp"
             android:layout_height="124dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="30dp"
             app:cardBackgroundColor="#2196F3"
+            app:layout_constraintBottom_toTopOf="@+id/cardView3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -81,25 +82,26 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="191dp"
-            android:layout_height="158dp"
+            android:layout_width="147dp"
+            android:layout_height="155dp"
             android:layout_marginStart="13dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="28dp"
             app:cardBackgroundColor="#808395"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="164dp"
-                android:layout_height="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
                 android:src="@drawable/outline_explore_white_24dp" />
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="172dp"
-                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
                 android:layout_marginTop="80dp"
                 android:gravity="center"
                 android:text="Airport Maps"
@@ -108,12 +110,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
-            android:layout_width="191dp"
-            android:layout_height="162dp"
+            android:layout_width="188dp"
+            android:layout_height="150dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="14dp"
-            app:cardBackgroundColor="#1A0A37"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="#250A55"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
 
@@ -137,12 +141,14 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="183dp"
-            android:layout_height="118dp"
-            android:layout_marginTop="18dp"
+            android:layout_width="146dp"
+            android:layout_height="139dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             app:cardBackgroundColor="#1A2988"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/cardView2"
             app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
