@@ -42,15 +42,15 @@ public class SpecificAirportActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String country = intent.getStringExtra("country");
         AirApi client = AirClient.getClient();
-        Call<Response> call = client.getSpecific("country", Constants.AIR_API_KEY);
+        Call<Response> call = client.getSpecific(country, Constants.AIR_API_KEY);
 
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response){
                 if(response.isSuccessful()){
-                    List<Airport> mList  = response.body().getAirports();
 
-                   SpecificRecyclerAdapter myCountryAdapter = new SpecificRecyclerAdapter(SpecificAirportActivity.this, mList);
+                    List<Airport> mList  = response.body().getAirports();
+                   SpecificRecyclerAdapter myCountryAdapter = new SpecificRecyclerAdapter(getApplicationContext(), mList);
                     searchResults.setAdapter(myCountryAdapter);
 //                   myCountryAdapter.setResultList(mList);
                     searchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
