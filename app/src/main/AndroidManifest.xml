@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SpecificAirportActivity"
+            android:name=".ui.SpecificAirportActivity"
             android:exported="false" />
         <activity
             android:name=".ui.BookingActivity"

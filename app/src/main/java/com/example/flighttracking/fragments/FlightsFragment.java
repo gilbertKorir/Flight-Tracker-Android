@@ -21,6 +21,8 @@ import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
 import com.example.flighttracking.ui.SpecificAirportActivity;
 
+import java.io.Serializable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -51,7 +53,6 @@ public class FlightsFragment extends Fragment {
         }
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -62,6 +63,7 @@ public class FlightsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         airApi = AirClient.getClient();
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +72,7 @@ public class FlightsFragment extends Fragment {
                     @Override
                     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                         Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
-                        intent.putExtra("Response", (Parcelable) response.body());
+                        intent.putExtra("Response",response.body().toString());
                         startActivity(intent);
                     }
 

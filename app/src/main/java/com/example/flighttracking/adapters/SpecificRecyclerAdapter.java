@@ -38,7 +38,7 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
 
     @Override
     public void onBindViewHolder(@NonNull SpecificRecyclerAdapter.MyHolder holder, int position) {
-
+        holder.bindSpecific(list.get(position));
     }
 
     @Override
