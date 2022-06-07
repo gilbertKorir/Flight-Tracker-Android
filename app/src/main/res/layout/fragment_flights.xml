@@ -6,9 +6,26 @@
     tools:context=".fragments.FlightsFragment">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerview"/>
+    <SearchView
+        android:id="@+id/searc_view"
+        android:layout_width="299dp"
+        android:layout_height="59dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="180dp" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:text="Enter the country to find the available airports."
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="290dp"
+        android:text="Search" />
 </FrameLayout>

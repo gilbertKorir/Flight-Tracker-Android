@@ -11,12 +11,6 @@ import android.view.ViewGroup;
 import com.example.flighttracking.R;
 //import com.example.flighttracking.ui.FormActivity;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FlightsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FlightsFragment extends Fragment {
 
 
