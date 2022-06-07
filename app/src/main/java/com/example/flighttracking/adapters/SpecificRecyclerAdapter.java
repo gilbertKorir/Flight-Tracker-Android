@@ -13,6 +13,7 @@ import com.example.flighttracking.R;
 //import com.example.flighttracking.models.country.Response;
 import com.example.flighttracking.models.portsbycountry.Airport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -54,13 +55,13 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            context = itemView.getContext();
         }
         public void bindSpecific(Airport airport){
             name.setText(airport.getName());
             popularity.setText(airport.getPopularity());
             city.setText(airport.getCityCode());
             country.setText(airport.getCountryCode());
-
         }
     }
 }

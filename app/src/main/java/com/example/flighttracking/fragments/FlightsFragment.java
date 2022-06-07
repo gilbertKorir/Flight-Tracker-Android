@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SearchView;
 
 import com.example.flighttracking.Constants;
@@ -32,8 +33,7 @@ import retrofit2.Callback;
 //import com.example.flighttracking.ui.FormActivity;
 
 public class FlightsFragment extends Fragment {
-
-    @BindView(R.id.searc_view) SearchView searchView;
+    @BindView(R.id.editCountry) EditText msearch;
     @BindView(R.id.searchButton) Button search;
     AirApi airApi;
 
@@ -70,7 +70,9 @@ public class FlightsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (v == search) {
+                    String country = msearch.getText().toString();
                     Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
+                    intent.putExtra("country", country);
                     startActivity(intent);
                 }
             }

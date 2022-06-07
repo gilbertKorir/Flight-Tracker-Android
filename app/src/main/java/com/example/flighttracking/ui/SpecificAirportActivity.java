@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
@@ -28,7 +29,6 @@ import retrofit2.Callback;
 public class SpecificAirportActivity extends AppCompatActivity {
 //    Response response;
     @BindView(R.id.search_results) RecyclerView searchResults;
-    @BindView(R.id.searc_view) SearchView msearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class SpecificAirportActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         AirApi client = AirClient.getClient();
-        Call<Response> call = client.getSpecific(msearch.getQuery().toString(), Constants.AIR_API_KEY);
+        Call<Response> call = client.getSpecific("q", Constants.AIR_API_KEY);
 
         call.enqueue(new Callback<Response>() {
             @Override
