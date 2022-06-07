@@ -19,6 +19,8 @@ import com.example.flighttracking.R;
 import com.example.flighttracking.models.portsbycountry.Response;
 import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
+import com.example.flighttracking.ui.AllActivity;
+import com.example.flighttracking.ui.MainActivity;
 import com.example.flighttracking.ui.SpecificAirportActivity;
 
 import java.io.Serializable;
@@ -62,27 +64,16 @@ public class FlightsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        airApi = AirClient.getClient();
+
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Response> call = airApi.searchGif(searchView.getQuery().toString(), Constants.AIR_API_KEY);
-                call.enqueue(new Callback<Response>() {
-                    @Override
-                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                        Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
-                        intent.putExtra("Response",response.body().toString());
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onFailure(Call<Response> call, Throwable t) {
-
-                    }
-                });
-
+                if (v == search) {
+                    Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
-    }
+}

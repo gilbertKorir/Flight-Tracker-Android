@@ -60,6 +60,7 @@ public class CountryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+
         AirApi client = AirClient.getClient();
         Call<CountrySearchResponse> call = client.getCountry(Constants.AIR_API_KEY);
 

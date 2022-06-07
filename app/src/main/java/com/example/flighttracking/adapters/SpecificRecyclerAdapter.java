@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flighttracking.R;
-import com.example.flighttracking.models.country.Response;
+//import com.example.flighttracking.models.country.Response;
 import com.example.flighttracking.models.portsbycountry.Airport;
 
 import java.util.List;
