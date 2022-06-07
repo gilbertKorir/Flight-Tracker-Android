@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.flighttracking.R;
 //import com.example.flighttracking.models.country.Response;
 import com.example.flighttracking.models.portsbycountry.Airport;
+import com.example.flighttracking.models.portsbycountry.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,11 @@ import butterknife.ButterKnife;
 public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecyclerAdapter.MyHolder>{
 
     private Context context;
-    private List<Airport> list;
+    private List<Airport> airports;
 
-    public SpecificRecyclerAdapter(Context context, List<Airport> list) {
+    public SpecificRecyclerAdapter(Context context, List<Airport> airports) {
         this.context = context;
-        this.list = list;
+        this.airports = airports;
     }
 
     @NonNull
@@ -39,12 +40,12 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
 
     @Override
     public void onBindViewHolder(@NonNull SpecificRecyclerAdapter.MyHolder holder, int position) {
-        holder.bindSpecific(list.get(position));
+        holder.bindSpecific(airports.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return airports.size();
     }
     class MyHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.nameView) TextView name;

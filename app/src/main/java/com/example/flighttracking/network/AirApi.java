@@ -15,6 +15,6 @@ public interface AirApi {
         @GET("airports")
         Call<AirportsListResponse> getAirport(@Query("api_key") String api_key);
         @GET("suggest")
-        Call<Response> getSpecific(@Query("q") String term,
+        Call<Response> getSpecific(@Query("q") String country,
                                   @Query("api_key") String api_key);
 }
