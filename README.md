@@ -5,14 +5,15 @@ Flight tracker retrieves informartion from the AirLabs API for all the airports 
 - [Gilbert Korir](https://github.com/gilbertKorir)
 
 ## Features
-* Registration and logging in to participate in an event.
+* Search the available airports by countries.
+* Booking a flight.
+* Rate the airport.
 
 
 ## Upcoming Features
-* Incorporating an API.
-* Implementing the firebase.
-* Adding an event to your calender.
-* Posting an event.
+* Intergrating the Firebase database.
+* Setting the user authentications.
+* Configuring the book flight form
 
 ## Getting Started
 

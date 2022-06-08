@@ -50,14 +50,12 @@ public class SpecificAirportActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     List<Airport> mList  = response.body().getAirports();
-                   SpecificRecyclerAdapter myCountryAdapter = new SpecificRecyclerAdapter(getApplicationContext(), mList);
-                    searchResults.setAdapter(myCountryAdapter);
+                   SpecificRecyclerAdapter specificRecyclerAdapter = new SpecificRecyclerAdapter(SpecificAirportActivity.this, mList);
+                    searchResults.setAdapter(specificRecyclerAdapter);
 //                   myCountryAdapter.setResultList(mList);
                     searchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
                 }
             }
-
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
 

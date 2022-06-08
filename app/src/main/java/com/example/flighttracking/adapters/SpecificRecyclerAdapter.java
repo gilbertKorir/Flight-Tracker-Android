@@ -33,7 +33,7 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
     @NonNull
     @Override
     public SpecificRecyclerAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view= layoutInflater.inflate(R.layout.specific,parent,false);
         return  new MyHolder(view);
     }
@@ -45,7 +45,7 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
 
     @Override
     public int getItemCount() {
-        return airports.size();
+         return airports.size();
     }
     class MyHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.nameView) TextView name;
