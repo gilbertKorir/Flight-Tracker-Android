@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
@@ -33,6 +34,7 @@ public class AirportsFragment extends Fragment {
 
     private MyAirportAdapter mDisplayAdapter;
     @BindView(R.id.recyclerview) RecyclerView mRecyclerView;
+    @BindView(R.id.errorTextView) TextView mErrorTextView;
 
     public AirportsFragment() {
         // Required empty public constructor
@@ -76,13 +78,25 @@ public class AirportsFragment extends Fragment {
                     mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
                 }
+                else{
+                    showUnsuccessfulMessage();
+                }
             }
 
             @Override
             public void onFailure(Call<AirportsListResponse> call, Throwable t) {
-
+                showFailureMessage();
             }
         });
 
+    }
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
     }
 }
