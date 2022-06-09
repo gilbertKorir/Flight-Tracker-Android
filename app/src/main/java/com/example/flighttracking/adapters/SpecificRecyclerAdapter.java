@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.flighttracking.R;
 //import com.example.flighttracking.models.country.Response;
 import com.example.flighttracking.models.portsbycountry.Airport;
+import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 import com.example.flighttracking.models.portsbycountry.Response;
 
 import java.util.ArrayList;
@@ -23,9 +24,9 @@ import butterknife.ButterKnife;
 public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecyclerAdapter.MyHolder>{
 
     private Context context;
-    private List<Airport> airports;
+    private List<AirportsByCountry> airports;
 
-    public SpecificRecyclerAdapter(Context context, List<Airport> airports) {
+    public SpecificRecyclerAdapter(Context context, List<AirportsByCountry> airports) {
         this.context = context;
         this.airports = airports;
     }
@@ -58,9 +59,9 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
             ButterKnife.bind(this,itemView);
             context = itemView.getContext();
         }
-        public void bindSpecific(Airport airport){
+        public void bindSpecific(AirportsByCountry airport){
             name.setText(airport.getName());
-            popularity.setText(airport.getPopularity());
+            popularity.setText(airport.getPopularity().toString());
             city.setText(airport.getCityCode());
             country.setText(airport.getCountryCode());
         }

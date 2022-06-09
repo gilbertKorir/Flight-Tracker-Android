@@ -16,6 +16,8 @@ import com.example.flighttracking.R;
 import com.example.flighttracking.adapters.SpecificRecyclerAdapter;
 
 import com.example.flighttracking.models.portsbycountry.Airport;
+import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
+import com.example.flighttracking.models.portsbycountry.AirportsSearch;
 import com.example.flighttracking.models.portsbycountry.Response;
 import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
@@ -42,22 +44,23 @@ public class SpecificAirportActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String country = intent.getStringExtra("country");
         AirApi client = AirClient.getClient();
-        Call<Response> call = client.getSpecific(country, Constants.AIR_API_KEY);
+        Call<AirportsSearch> call = client.getSpecific(country, Constants.AIR_API_KEY);
 
-        call.enqueue(new Callback<Response>() {
+        call.enqueue(new Callback<AirportsSearch>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response){
+            public void onResponse(Call<AirportsSearch> call, retrofit2.Response<AirportsSearch> response){
                 if(response.isSuccessful()){
 
-                    List<Airport> mList  = response.body().getAirports();
+                    List<AirportsByCountry> mList  = response.body().getResponse().getAirportsByCountries();
                    SpecificRecyclerAdapter specificRecyclerAdapter = new SpecificRecyclerAdapter(SpecificAirportActivity.this, mList);
                     searchResults.setAdapter(specificRecyclerAdapter);
 //                   myCountryAdapter.setResultList(mList);
                     searchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    searchResults.setHasFixedSize(true);
                 }
             }
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
+            public void onFailure(Call<AirportsSearch> call, Throwable t) {
 
             }
         });
