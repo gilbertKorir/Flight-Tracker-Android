@@ -33,7 +33,7 @@ public class AirportsByCountry {
     private String countryCode;
     @SerializedName("popularity")
     @Expose
-    private Integer popularity;
+    private Double popularity;
     @SerializedName("city_code")
     @Expose
     private String cityCode;
@@ -57,7 +57,7 @@ public class AirportsByCountry {
      * @param lat
      * @param slug
      */
-    public AirportsByCountry(String name, String iataCode, String icaoCode, Double lat, Double lng, String slug, String countryCode, Integer popularity, String cityCode) {
+    public AirportsByCountry(String name, String iataCode, String icaoCode, Double lat, Double lng, String slug, String countryCode, Double popularity, String cityCode) {
         super();
         this.name = name;
         this.iataCode = iataCode;
@@ -126,11 +126,11 @@ public class AirportsByCountry {
         this.countryCode = countryCode;
     }
 
-    public Integer getPopularity() {
+    public Double getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(Integer popularity) {
+    public void setPopularity(Double popularity) {
         this.popularity = popularity;
     }
 

@@ -24,12 +24,15 @@
 
             <TextView
                 android:id="@+id/airportView"
-                android:layout_width="wrap_content"
+                android:layout_width="208dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_marginStart="104dp"
-                android:layout_marginLeft="104dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="99dp"
+                android:layout_marginLeft="99dp"
+                android:layout_marginEnd="114dp"
+                android:gravity="center"
                 android:text="Airport Name"
                 android:textColor="#FF5722"
                 android:textSize="20sp"
@@ -40,33 +43,42 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="642dp">
+            android:layout_height="561dp"
+            android:background="#E1D4D0">
 
             <TextView
                 android:id="@+id/iataView"
-                android:layout_width="173dp"
-                android:layout_height="41dp"
-                android:layout_marginStart="39dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="TextView"
+                android:textColor="#050505"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/textView31"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/icaoView"
-                android:layout_width="174dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="26dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="TextView"
+                android:textColor="#050505"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/iataView"
                 app:layout_constraintTop_toBottomOf="@+id/iataView" />
 
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="104dp"
-                android:layout_height="39dp"
-                android:layout_marginTop="31dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Latitude:"
+                android:textColor="#050505"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textView19"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -74,20 +86,23 @@
             <TextView
                 android:id="@+id/textView31"
                 android:layout_width="107dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Iata_code: "
+                android:textColor="#050505"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/iataView" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="107dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="26dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Icao_code:"
+                android:textColor="#050505"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textView31"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -95,10 +110,12 @@
             <TextView
                 android:id="@+id/textView23"
                 android:layout_width="101dp"
-                android:layout_height="37dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="37dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Longitude:"
+                android:textColor="#050505"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -106,76 +123,98 @@
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="88dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="37dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Slug:"
+                android:textColor="#050505"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textView23"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
             <TextView
                 android:id="@+id/textView27"
-                android:layout_width="87dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="41dp"
+                android:layout_width="116dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="City code:"
+                android:textColor="#050505"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textView25"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
             <TextView
                 android:id="@+id/textView29"
-                android:layout_width="93dp"
-                android:layout_height="38dp"
+                android:layout_width="115dp"
+                android:layout_height="29dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="Popularity:"
+                android:textColor="#050505"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
             <TextView
                 android:id="@+id/latView"
-                android:layout_width="174dp"
-                android:layout_height="39dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="TextView"
+                android:textColor="#050505"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/icaoView"
                 app:layout_constraintTop_toBottomOf="@+id/icaoView" />
 
             <TextView
                 android:id="@+id/longView"
-                android:layout_width="168dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="TextView"
+                android:textColor="#050505"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/latView"
                 app:layout_constraintTop_toBottomOf="@+id/latView" />
 
             <TextView
                 android:id="@+id/slugView"
-                android:layout_width="171dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="TextView"
+                android:textColor="#050505"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/longView"
                 app:layout_constraintTop_toBottomOf="@+id/longView" />
 
             <TextView
                 android:id="@+id/cityView"
-                android:layout_width="165dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="37dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="TextView"
+                android:textColor="#050505"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/slugView"
                 app:layout_constraintTop_toBottomOf="@+id/slugView" />
 
             <TextView
                 android:id="@+id/popularView"
-                android:layout_width="171dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="TextView"
+                android:textColor="#050505"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/cityView"
                 app:layout_constraintTop_toBottomOf="@+id/cityView" />
 
@@ -184,11 +223,11 @@
                 android:layout_width="201dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="77dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="119dp"
                 android:text="Save Airport"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.357"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/popularView" />
         </androidx.constraintlayout.widget.ConstraintLayout>

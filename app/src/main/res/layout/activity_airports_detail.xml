@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <androidx.viewpager.widget.PagerTabStrip
-        android:id="@+id/pagerHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="6dp"
-        android:paddingBottom="4dp" />
+        <androidx.viewpager.widget.PagerTabStrip
+            android:id="@+id/pagerHeader"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp" />
     </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>

@@ -63,7 +63,7 @@ public class AirportDetailFragment extends Fragment {
         mViewlong.setText(mAirport.getLng().toString());
         mViewslug.setText(mAirport.getSlug());
         mViewcity.setText(mAirport.getCityCode());
-        mViewpopular.setText(mAirport.getPopularity());
+        mViewpopular.setText(mAirport.getPopularity().toString());
 
         return view;
 
