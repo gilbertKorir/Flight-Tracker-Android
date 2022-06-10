@@ -1,6 +1,7 @@
 package com.example.flighttracking.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import com.example.flighttracking.R;
 import com.example.flighttracking.models.portsbycountry.Airport;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 import com.example.flighttracking.models.portsbycountry.Response;
+import com.example.flighttracking.ui.AirportsDetailActivity;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +28,11 @@ import butterknife.ButterKnife;
 public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecyclerAdapter.MyHolder>{
 
     private Context context;
-    private List<AirportsByCountry> airports;
+    private List<AirportsByCountry> mairports;
 
     public SpecificRecyclerAdapter(Context context, List<AirportsByCountry> airports) {
         this.context = context;
-        this.airports = airports;
+        this.mairports = airports;
     }
 
     @NonNull
@@ -41,29 +45,42 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
 
     @Override
     public void onBindViewHolder(@NonNull SpecificRecyclerAdapter.MyHolder holder, int position) {
-        holder.bindSpecific(airports.get(position));
+        holder.bindSpecific(mairports.get(position));
     }
 
     @Override
     public int getItemCount() {
-         return airports.size();
+         return mairports.size();
     }
-    class MyHolder extends RecyclerView.ViewHolder {
+
+    class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.nameView) TextView name;
         @BindView(R.id.popularity) TextView popularity;
         @BindView(R.id.cityCode) TextView city;
         @BindView(R.id.countryCode) TextView country;
+        private Context mContext;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
             context = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
         public void bindSpecific(AirportsByCountry airport){
             name.setText(airport.getName());
             popularity.setText(airport.getPopularity().toString());
             city.setText(airport.getCityCode());
             country.setText(airport.getCountryCode());
+        }
+
+        @Override
+        public void onClick(View v) {
+            //clicking individual airport
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(context, AirportsDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("airports", Parcels.wrap(mairports));
+            mContext.startActivity(intent);
         }
     }
 }
