@@ -7,13 +7,26 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.flighttracking.R;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 
+import org.parceler.Parcels;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AirportDetailFragment extends Fragment {
+
+    @BindView(R.id.airportView) TextView mViewairport;
+    @BindView(R.id.iataView) TextView mViewiata;
+    @BindView(R.id.icaoView) TextView mViewicao;
+    @BindView(R.id.latView) TextView mViewlat;
+    @BindView(R.id.longView) TextView mViewlong;
+    @BindView(R.id.slugView) TextView mViewslug;
+    @BindView(R.id.cityView) TextView mViewcity;
+    @BindView(R.id.popularView) TextView mViewpopular;
 
     private AirportsByCountry mAirport;
 
