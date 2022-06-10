@@ -55,6 +55,16 @@ public class AirportDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_airport_detail, container, false);
         ButterKnife.bind(this, view);
+
+        mViewairport.setText(mAirport.getName());
+        mViewiata.setText(mAirport.getIataCode());
+        mViewicao.setText(mAirport.getIcaoCode());
+        mViewlat.setText(mAirport.getLat().toString());
+        mViewlong.setText(mAirport.getLng().toString());
+        mViewslug.setText(mAirport.getSlug());
+        mViewcity.setText(mAirport.getCityCode());
+        mViewpopular.setText(mAirport.getPopularity());
+
         return view;
 
     }
