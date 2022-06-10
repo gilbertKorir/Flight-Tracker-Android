@@ -19,22 +19,14 @@ import butterknife.ButterKnife;
 public class CreateAccountActivity extends AppCompatActivity implements  View.OnClickListener {
 
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
-    @BindView(R.id.createUserButton)
-    Button mCreateUserButton;
-    @BindView(R.id.nameEditText)
-    TextInputLayout mNameEditText;
-    @BindView(R.id.emailEditText)
-    EditText mEmailEditText;
-    @BindView(R.id.passwordEditText)
-    EditText mPasswordEditText;
-    @BindView(R.id.confirmPasswordEditText)
-    EditText mConfirmPasswordEditText;
-    @BindView(R.id.loginTextView)
-    TextView mLoginTextView;
-    @BindView(R.id.firebaseProgressBar)
-    ProgressBar mSignInProgressBar;
-    @BindView(R.id.loadingTextView)
-    TextView mLoadingSignUp;
+    @BindView(R.id.createUserButton) Button mCreateUserButton;
+    @BindView(R.id.nameEditText) TextInputLayout mNameEditText;
+    @BindView(R.id.emailEditText) TextInputLayout mEmailEditText;
+    @BindView(R.id.passwordEditText) TextInputLayout mPasswordEditText;
+    @BindView(R.id.confirmPasswordEditText) TextInputLayout mConfirmPasswordEditText;
+    @BindView(R.id.loginTextView) TextView mLoginTextView;
+    @BindView(R.id.firebaseProgressBar) ProgressBar mSignInProgressBar;
+    @BindView(R.id.loadingTextView) TextView mLoadingSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

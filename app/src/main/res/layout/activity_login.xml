@@ -8,8 +8,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditText"
-        android:layout_width="374dp"
-        android:layout_height="59dp"
+        android:layout_width="339dp"
+        android:layout_height="61dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="174dp"
         android:layout_marginEnd="24dp"
@@ -31,8 +31,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditText"
-        android:layout_width="377dp"
-        android:layout_height="57dp"
+        android:layout_width="337dp"
+        android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
@@ -59,18 +59,17 @@
         android:id="@+id/passwordLoginButton"
         android:layout_width="163dp"
         android:layout_height="51dp"
-        android:layout_marginStart="124dp"
         android:layout_marginTop="52dp"
-        android:layout_marginEnd="124dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="396dp"
-        android:layout_height="49dp"
+        android:layout_width="364dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="8dp"
@@ -88,12 +87,14 @@
         android:id="@+id/registerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
         android:text="Don't have an account? Sign up here!"
         android:textColor="#0A2071"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLoginButton" />
 

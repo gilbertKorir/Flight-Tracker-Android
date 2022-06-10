@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.flighttracking.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,8 +21,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String TAG = LoginActivity.class.getSimpleName();
     @BindView(R.id.registerTextView) TextView mRegisterTextView;
     @BindView(R.id.passwordLoginButton) Button mPasswordLoginButton;
-    @BindView(R.id.emailEditText) EditText mEmailEditText;
-    @BindView(R.id.passwordEditText) EditText mPasswordEditText;
+    @BindView(R.id.emailEditText) TextInputLayout mEmailEditText;
+    @BindView(R.id.passwordEditText) TextInputLayout mPasswordEditText;
     @BindView(R.id.firebaseProgressBar) ProgressBar mSignInProgressBar;
     @BindView(R.id.loadingTextView) TextView mLoadingSignUp;
 
