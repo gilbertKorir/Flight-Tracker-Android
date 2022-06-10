@@ -12,30 +12,38 @@
         android:layout_height="match_parent"
         android:background="@color/purple_700">
 
+        <ImageView
+            android:id="@+id/airportImageView"
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/flight3" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="88dp"
+            android:layout_height="61dp"
             android:background="@android:color/white"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
             android:paddingRight="10dp"
             android:paddingBottom="20dp">
 
-
             <TextView
                 android:id="@+id/airportView"
-                android:layout_width="208dp"
+                android:layout_width="382dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="99dp"
-                android:layout_marginLeft="99dp"
-                android:layout_marginEnd="114dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginEnd="9dp"
                 android:gravity="center"
+
                 android:text="Airport Name"
                 android:textColor="#FF5722"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 
@@ -55,7 +63,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView31"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +75,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/iataView"
                 app:layout_constraintTop_toBottomOf="@+id/iataView" />
 
@@ -79,7 +87,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Latitude:"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView19"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -91,7 +99,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Iata_code: "
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/iataView" />
 
@@ -103,7 +111,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Icao_code:"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView31"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -116,7 +124,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Longitude:"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -128,7 +136,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Slug:"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView23"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -140,7 +148,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="City code:"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView25"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -153,7 +161,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Popularity:"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
@@ -165,7 +173,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/icaoView"
                 app:layout_constraintTop_toBottomOf="@+id/icaoView" />
 
@@ -177,7 +185,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/latView"
                 app:layout_constraintTop_toBottomOf="@+id/latView" />
 
@@ -189,7 +197,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/longView"
                 app:layout_constraintTop_toBottomOf="@+id/longView" />
 
@@ -202,7 +210,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/slugView"
                 app:layout_constraintTop_toBottomOf="@+id/slugView" />
 
@@ -214,7 +222,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/cityView"
                 app:layout_constraintTop_toBottomOf="@+id/cityView" />
 
