@@ -80,7 +80,7 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
             Intent intent = new Intent(context, AirportsDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("airports", Parcels.wrap(mairports));
-            mContext.startActivity(intent);
+            context.startActivity(intent);
         }
     }
 }

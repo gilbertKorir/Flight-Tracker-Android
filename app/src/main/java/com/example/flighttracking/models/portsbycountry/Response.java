@@ -6,15 +6,17 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
 
+@Parcel
 public class Response {
 
     @SerializedName("countries")
     @Expose
     private List<Country> countries = null;
-    @SerializedName("cities")
-    @Expose
-    private List<Object> cities = null;
+//    @SerializedName("cities")
+//    @Expose
+//    private List<Object> cities = null;
     @SerializedName("airports")
     @Expose
     private List<Airport> airports = null;
@@ -24,9 +26,9 @@ public class Response {
     @SerializedName("cities_by_countries")
     @Expose
     private List<CitiesByCountry> citiesByCountries = null;
-    @SerializedName("airports_by_cities")
-    @Expose
-    private List<Object> airportsByCities = null;
+//    @SerializedName("airports_by_cities")
+//    @Expose
+//    private List<Object> airportsByCities = null;
     @SerializedName("airports_by_countries")
     @Expose
     private List<AirportsByCountry> airportsByCountries = null;
@@ -51,11 +53,11 @@ public class Response {
     public Response(List<Country> countries, List<Object> cities, List<Airport> airports, List<CitiesByAirport> citiesByAirports, List<CitiesByCountry> citiesByCountries, List<Object> airportsByCities, List<AirportsByCountry> airportsByCountries) {
         super();
         this.countries = countries;
-        this.cities = cities;
+//        this.cities = cities;
         this.airports = airports;
         this.citiesByAirports = citiesByAirports;
         this.citiesByCountries = citiesByCountries;
-        this.airportsByCities = airportsByCities;
+//        this.airportsByCities = airportsByCities;
         this.airportsByCountries = airportsByCountries;
     }
 
@@ -67,13 +69,13 @@ public class Response {
         this.countries = countries;
     }
 
-    public List<Object> getCities() {
-        return cities;
-    }
+//    public List<Object> getCities() {
+//        return cities;
+//    }
 
-    public void setCities(List<Object> cities) {
-        this.cities = cities;
-    }
+//    public void setCities(List<Object> cities) {
+//        this.cities = cities;
+//    }
 
     public List<Airport> getAirports() {
         return airports;
@@ -99,13 +101,13 @@ public class Response {
         this.citiesByCountries = citiesByCountries;
     }
 
-    public List<Object> getAirportsByCities() {
-        return airportsByCities;
-    }
+//    public List<Object> getAirportsByCities() {
+//        return airportsByCities;
+//    }
 
-    public void setAirportsByCities(List<Object> airportsByCities) {
-        this.airportsByCities = airportsByCities;
-    }
+//    public void setAirportsByCities(List<Object> airportsByCities) {
+//        this.airportsByCities = airportsByCities;
+//    }
 
     public List<AirportsByCountry> getAirportsByCountries() {
         return airportsByCountries;
