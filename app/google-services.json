@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1029760370764",
+    "project_id": "flighttracking-74b5b",
+    "storage_bucket": "flighttracking-74b5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029760370764:android:f5ee5e3a08d3b237248ce9",
+        "android_client_info": {
+          "package_name": "com.example.flighttracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029760370764-6cnceqsc6cesr7j1lr0c7nrvrogggbtv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCizS15oKFwKEGQKQNzYo2YcRUFr0PsTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029760370764-6cnceqsc6cesr7j1lr0c7nrvrogggbtv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
