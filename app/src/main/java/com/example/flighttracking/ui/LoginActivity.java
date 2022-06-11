@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.flighttracking.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,11 +27,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.firebaseProgressBar) ProgressBar mSignInProgressBar;
     @BindView(R.id.loadingTextView) TextView mLoadingSignUp;
 
+    //firebase
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        mAuth = FirebaseAuth.getInstance();
 
         mRegisterTextView.setOnClickListener(this);
         mPasswordLoginButton.setOnClickListener(this);
@@ -44,8 +50,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
         }
         if (v == mPasswordLoginButton) {
-//            loginWithPassword();
+            loginWithPassword();
 //            showProgressBar();
+        }
+    }
+    //logging in user once validated
+    private void loginWithPassword() {
+        String email = mEmailEditText.getEditText().getText().toString().trim();
+        String password = mPasswordEditText.getEditText().getText().toString().trim();
+        if (email.equals("")) {
+            mEmailEditText.setError("Please enter your email");
+            return;
+        }
+        if (password.equals("")) {
+            mPasswordEditText.setError("Password cannot be blank");
+            return;
         }
     }
 }
