@@ -4,14 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.flighttracking.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,11 +31,17 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
     @BindView(R.id.firebaseProgressBar) ProgressBar mSignInProgressBar;
     @BindView(R.id.loadingTextView) TextView mLoadingSignUp;
 
+    //Firebase
+    private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         ButterKnife.bind(this);
+
+        mAuth = FirebaseAuth.getInstance();
 
         mLoginTextView.setOnClickListener(this);
         mCreateUserButton.setOnClickListener(this);
@@ -48,8 +57,22 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
         }
 
         if (v == mCreateUserButton) {
-
-//            createNewUser();
+            createNewUser();
         }
+    }
+    private void createNewUser() {
+        final String name = mNameEditText.getEditText().getText().toString().trim();
+        final String email = mEmailEditText.getEditText().getText().toString().trim();
+        String password = mPasswordEditText.getEditText().getText().toString().trim();
+        String confirmPassword = mConfirmPasswordEditText.getEditText().getText().toString().trim();
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "Authentication successful");
+                    } else {
+                        Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
