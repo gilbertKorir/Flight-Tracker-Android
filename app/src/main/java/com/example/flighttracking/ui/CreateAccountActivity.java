@@ -14,7 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.flighttracking.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -90,7 +93,6 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
         }
         return true;
     }
-
     //create user
     private void createNewUser() {
         final String name = mNameEditText.getEditText().getText().toString().trim();
@@ -98,14 +100,27 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
         String password = mPasswordEditText.getEditText().getText().toString().trim();
         String confirmPassword = mConfirmPasswordEditText.getEditText().getText().toString().trim();
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "Authentication successful");
-                    } else {
-                        Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+        boolean validEmail = isValidEmail(email);
+        boolean validName = isValidName(name);
+        boolean validPassword = isValidPassword(password, confirmPassword);
+        if (!validEmail || !validName || !validPassword) return;
+
+        showProgressBar();
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                hideProgressBar();
+
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "Authentication successful");
+                } else {
+                    Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     //Authenticate the user
     private void createAuthStateListener() {
@@ -121,7 +136,6 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
                     finish();
                 }
             }
-
         };
     }
     //life cycle firebase objects
@@ -130,12 +144,23 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
-
     @Override
     public void onStop() {
         super.onStop();
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+    //user friendly
+
+    private void showProgressBar() {
+        mSignInProgressBar.setVisibility(View.VISIBLE);
+        mLoadingSignUp.setVisibility(View.VISIBLE);
+        mLoadingSignUp.setText("Sign Up process in Progress");
+    }
+
+    private void hideProgressBar() {
+        mSignInProgressBar.setVisibility(View.GONE);
+        mLoadingSignUp.setVisibility(View.GONE);
     }
 }
