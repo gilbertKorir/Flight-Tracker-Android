@@ -48,11 +48,12 @@ public class SpecificAirportActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        String country = intent.getStringExtra("country");
+//        String country = intent.getStringExtra("country");
 
+        //retrieving location from shared preference
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-        Log.d("Shared Pref Location", mRecentAddress);
+        String country = intent.getStringExtra("country");
 
         AirApi client = AirClient.getClient();
         Call<AirportsSearch> call = client.getSpecific(country, Constants.AIR_API_KEY);

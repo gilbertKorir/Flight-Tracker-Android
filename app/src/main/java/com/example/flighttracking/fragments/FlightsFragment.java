@@ -26,6 +26,8 @@ import com.example.flighttracking.network.AirClient;
 import com.example.flighttracking.ui.AllActivity;
 import com.example.flighttracking.ui.MainActivity;
 import com.example.flighttracking.ui.SpecificAirportActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
 
@@ -39,9 +41,12 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.editCountry) EditText msearch;
     @BindView(R.id.searchButton) Button search;
     AirApi airApi;
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
     private String mRecentCountry;
+
+    //Firebase
+    private DatabaseReference mSearchedLocationReference;
 
     public FlightsFragment() {
         // Required empty public constructor
@@ -68,27 +73,36 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mEditor = mSharedPreferences.edit();
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+//        mEditor = mSharedPreferences.edit();
+        mSearchedLocationReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (v == search) {
                     String country = msearch.getText().toString();
-                    addToSharedPreferences(country);
+                    if(!(country).equals("")) {
+//                        addToSharedPreferences(country);
+                        saveLocationToFirebase(country);
+                    }
                     Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
-//                    intent.putExtra("country", country);
                     startActivity(intent);
                 }
             }
         });
     }
+    public void saveLocationToFirebase(String location) {
+        mSearchedLocationReference.setValue(location);
+    }
     @Override
     public void onClick(View v) {
 
     }
-    private void addToSharedPreferences(String country) {
-        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, country).apply();
-    }
+//    private void addToSharedPreferences(String country) {
+//        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, country).apply();
+//    }
 }
