@@ -36,6 +36,7 @@ import retrofit2.Callback;
 public class SpecificAirportActivity extends AppCompatActivity {
 
     @BindView(R.id.search_results) RecyclerView searchResults;
+//    public  List<Airport> airports;
 
     //shared prefernce
     private SharedPreferences mSharedPreferences;
@@ -51,8 +52,8 @@ public class SpecificAirportActivity extends AppCompatActivity {
 //        String country = intent.getStringExtra("country");
 
         //retrieving location from shared preference
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
         String country = intent.getStringExtra("country");
 
         AirApi client = AirClient.getClient();
@@ -63,8 +64,8 @@ public class SpecificAirportActivity extends AppCompatActivity {
             public void onResponse(Call<AirportsSearch> call, retrofit2.Response<AirportsSearch> response){
                 if(response.isSuccessful()){
 
-                    List<AirportsByCountry> mList  = response.body().getResponse().getAirportsByCountries();
-                   SpecificRecyclerAdapter specificRecyclerAdapter = new SpecificRecyclerAdapter(SpecificAirportActivity.this, mList);
+                    List<AirportsByCountry> airports = response.body().getResponse().getAirportsByCountries();
+                   SpecificRecyclerAdapter specificRecyclerAdapter = new SpecificRecyclerAdapter(SpecificAirportActivity.this, airports);
                     searchResults.setAdapter(specificRecyclerAdapter);
 //                   myCountryAdapter.setResultList(mList);
                     searchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

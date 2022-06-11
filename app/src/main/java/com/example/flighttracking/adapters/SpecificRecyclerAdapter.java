@@ -42,7 +42,6 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
         View view= layoutInflater.inflate(R.layout.specific,parent,false);
         return  new MyHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull SpecificRecyclerAdapter.MyHolder holder, int position) {
         holder.bindSpecific(mairports.get(position));
@@ -72,7 +71,6 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
             city.setText(airport.getCityCode());
             country.setText(airport.getCountryCode());
         }
-
         @Override
         public void onClick(View v) {
             //clicking individual airport
