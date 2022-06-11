@@ -26,8 +26,11 @@ import com.example.flighttracking.network.AirClient;
 import com.example.flighttracking.ui.AllActivity;
 import com.example.flighttracking.ui.MainActivity;
 import com.example.flighttracking.ui.SpecificAirportActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 
@@ -47,6 +50,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
 
     //Firebase
     private DatabaseReference mSearchedLocationReference;
+    private ValueEventListener mSearchedLocationReferenceListener;
 
     public FlightsFragment() {
         // Required empty public constructor
@@ -79,6 +83,20 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
                 .getInstance()
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
+        mSearchedLocationReferenceListener = mSearchedLocationReference.addValueEventListener(new ValueEventListener() { //attach listener
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) { //something changed!
+                for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
+                    String location = locationSnapshot.getValue().toString();
+                    Log.d("Locations updated", "location: " + location); //log
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) { //update UI here if error occurred.
+
+            }
+        });
 //
         search.setOnClickListener(this);
     }
@@ -99,6 +117,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
     }
     public void saveLocationToFirebase(String country) {
         mSearchedLocationReference.push().setValue(country);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mSearchedLocationReference.removeEventListener(mSearchedLocationReferenceListener);
     }
 
 //    private void addToSharedPreferences(String country) {
