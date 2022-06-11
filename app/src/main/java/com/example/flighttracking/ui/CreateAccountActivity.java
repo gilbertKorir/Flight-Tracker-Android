@@ -20,6 +20,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +42,7 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
     //Firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private String mName;
 
 
     @Override
@@ -95,29 +99,30 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
     }
     //create user
     private void createNewUser() {
+        mName = mNameEditText.getEditText().getText().toString().trim();//for displaying on the main activity
         final String name = mNameEditText.getEditText().getText().toString().trim();
         final String email = mEmailEditText.getEditText().getText().toString().trim();
         String password = mPasswordEditText.getEditText().getText().toString().trim();
         String confirmPassword = mConfirmPasswordEditText.getEditText().getText().toString().trim();
 
+        boolean validmName = isValidName(mName);//for displaying on the main activity
         boolean validEmail = isValidEmail(email);
         boolean validName = isValidName(name);
         boolean validPassword = isValidPassword(password, confirmPassword);
         if (!validEmail || !validName || !validPassword) return;
 
-        showProgressBar();
+        showProgressBar();//when the process is on
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                hideProgressBar();
+                hideProgressBar();//once the process is true
 
                 if (task.isSuccessful()) {
                     Log.d(TAG, "Authentication successful");
                 } else {
-                    Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -125,7 +130,6 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
     //Authenticate the user
     private void createAuthStateListener() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
-
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -137,6 +141,24 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
                 }
             }
         };
+    }
+    //Collecting and setting user's name
+    private void createFirebaseUserProfile(final FirebaseUser user) {
+        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                .setDisplayName(mName)
+                .build();
+
+        user.updateProfile(addProfileName)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, Objects.requireNonNull(user.getDisplayName()));
+                            Toast.makeText(CreateAccountActivity.this, "The display name has been set", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
     //life cycle firebase objects
     @Override
