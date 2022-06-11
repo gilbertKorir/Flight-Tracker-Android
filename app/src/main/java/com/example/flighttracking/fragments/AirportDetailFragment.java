@@ -7,11 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -19,7 +24,7 @@ import org.parceler.Parcels;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AirportDetailFragment extends Fragment {
+public class AirportDetailFragment extends Fragment implements View.OnClickListener{
 
     @BindView(R.id.airportView) TextView mViewairport;
     @BindView(R.id.iataView) TextView mViewiata;
@@ -30,6 +35,7 @@ public class AirportDetailFragment extends Fragment {
     @BindView(R.id.cityView) TextView mViewcity;
     @BindView(R.id.popularView) TextView mViewpopular;
     @BindView(R.id.airportImageView) ImageView mImageview;
+    @BindView(R.id.saveAirport) Button mSaveAirport;
 
     private AirportsByCountry mAirport;
 
@@ -69,7 +75,19 @@ public class AirportDetailFragment extends Fragment {
         mViewcity.setText(mAirport.getCityCode());
         mViewpopular.setText(mAirport.getPopularity().toString());
 
+        mSaveAirport.setOnClickListener(this);
         return view;
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mSaveAirport) {
+            DatabaseReference restaurantRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_AIRPORTS);
+            restaurantRef.push().setValue(mAirport);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
     }
 }
