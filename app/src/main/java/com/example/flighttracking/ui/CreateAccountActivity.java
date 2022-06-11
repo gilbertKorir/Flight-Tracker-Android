@@ -59,7 +59,6 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
             startActivity(intent);
             finish();
         }
-
         if (v == mCreateUserButton) {
             createNewUser();
         }
@@ -88,7 +87,7 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
@@ -96,5 +95,19 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
             }
 
         };
+    }
+    //life cycle firebase objects
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }
