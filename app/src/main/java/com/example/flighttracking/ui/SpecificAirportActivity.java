@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.flighttracking.Constants;
@@ -31,10 +34,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class SpecificAirportActivity extends AppCompatActivity {
-//    Response response;
+
     @BindView(R.id.search_results) RecyclerView searchResults;
 
-//    private List<Airport> mList;
+    //shared prefernce
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +49,11 @@ public class SpecificAirportActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String country = intent.getStringExtra("country");
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        Log.d("Shared Pref Location", mRecentAddress);
+
         AirApi client = AirClient.getClient();
         Call<AirportsSearch> call = client.getSpecific(country, Constants.AIR_API_KEY);
 

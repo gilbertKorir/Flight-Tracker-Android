@@ -52,13 +52,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
 
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,25 +70,25 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mEditor = mSharedPreferences.edit();
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mRecentCountry = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-        Log.d("Shared Pref Location", mRecentCountry);
 
-        search.setOnClickListener(this);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == search) {
+                    String country = msearch.getText().toString();
+                    addToSharedPreferences(country);
+                    Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
+//                    intent.putExtra("country", country);
+                    startActivity(intent);
+                }
+            }
+        });
     }
-
     @Override
     public void onClick(View v) {
-        if (v == search) {
-            String country = msearch.getText().toString();
-            addToSharedPreferences(country);
-            Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
-//            intent.putExtra("country", country);
-            startActivity(intent);
-        }
-    }
-    private void addToSharedPreferences(String location) {
-        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
-    }
 
+    }
+    private void addToSharedPreferences(String country) {
+        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, country).apply();
+    }
 }
