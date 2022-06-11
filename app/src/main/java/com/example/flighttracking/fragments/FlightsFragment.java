@@ -1,6 +1,7 @@
 package com.example.flighttracking.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +35,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 //import com.example.flighttracking.ui.FormActivity;
 
-public class FlightsFragment extends Fragment {
+public class FlightsFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.editCountry) EditText msearch;
     @BindView(R.id.searchButton) Button search;
     AirApi airApi;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+    private String mRecentCountry;
 
     public FlightsFragment() {
         // Required empty public constructor
@@ -51,7 +57,6 @@ public class FlightsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
         }
 
     }
@@ -65,17 +70,27 @@ public class FlightsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mEditor = mSharedPreferences.edit();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mRecentCountry = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        Log.d("Shared Pref Location", mRecentCountry);
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v == search) {
-                    String country = msearch.getText().toString();
-                    Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
-                    intent.putExtra("country", country);
-                    startActivity(intent);
-                }
-            }
-        });
+        search.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v == search) {
+            String country = msearch.getText().toString();
+            addToSharedPreferences(country);
+            Intent intent = new Intent(getContext(), SpecificAirportActivity.class);
+//            intent.putExtra("country", country);
+            startActivity(intent);
+        }
+    }
+    private void addToSharedPreferences(String location) {
+        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
+    }
+
 }
