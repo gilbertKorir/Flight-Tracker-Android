@@ -1,5 +1,6 @@
 package com.example.flighttracking.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.flighttracking.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +35,7 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
 
     //Firebase
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
 
     @Override
@@ -42,6 +45,7 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
+        createAuthStateListener();
 
         mLoginTextView.setOnClickListener(this);
         mCreateUserButton.setOnClickListener(this);
@@ -60,6 +64,7 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
             createNewUser();
         }
     }
+    //create user
     private void createNewUser() {
         final String name = mNameEditText.getEditText().getText().toString().trim();
         final String email = mEmailEditText.getEditText().getText().toString().trim();
@@ -74,5 +79,22 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    //Authenticate the user
+    private void createAuthStateListener() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+        };
     }
 }
