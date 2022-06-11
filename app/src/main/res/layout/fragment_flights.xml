@@ -18,9 +18,9 @@
 
     <Button
         android:id="@+id/searchButton"
-        android:layout_width="126dp"
+        android:layout_width="143dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="127dp"
         android:layout_marginTop="300dp"
         android:background="@color/teal_200"
         android:text="Search"
@@ -38,4 +38,12 @@
         android:hint="Country"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/savedAirportsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="400dp"
+        android:text="Saved Airports" />
 </FrameLayout>

@@ -25,6 +25,7 @@ import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
 import com.example.flighttracking.ui.AllActivity;
 import com.example.flighttracking.ui.MainActivity;
+import com.example.flighttracking.ui.SavedAirportListActivity;
 import com.example.flighttracking.ui.SpecificAirportActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +45,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.editCountry) EditText msearch;
     @BindView(R.id.searchButton) Button search;
     AirApi airApi;
+    @BindView(R.id.savedAirportsButton) Button mSavedAirportsButton;
 //    private SharedPreferences mSharedPreferences;
 //    private SharedPreferences.Editor mEditor;
 //      private String mRecentCountry;
@@ -99,6 +101,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
         });
 //
         search.setOnClickListener(this);
+        mSavedAirportsButton.setOnClickListener(this);
     }
             @Override
             public void onClick(View v) {
@@ -112,6 +115,10 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
 //                    }
                     Intent intent = new Intent(getActivity(), SpecificAirportActivity.class);
                     intent.putExtra("country",country);
+                    startActivity(intent);
+                }
+                if (v == mSavedAirportsButton) {
+                    Intent intent = new Intent(getContext(), SavedAirportListActivity.class);
                     startActivity(intent);
                 }
     }

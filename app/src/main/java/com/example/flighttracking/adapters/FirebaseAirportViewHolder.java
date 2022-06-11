@@ -57,14 +57,12 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implement
                 }
 
                 int itemPosition = getLayoutPosition();
-
                 Intent intent = new Intent(mContext, AirportsDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("airports", Parcels.wrap(airports));
 
                 mContext.startActivity(intent);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

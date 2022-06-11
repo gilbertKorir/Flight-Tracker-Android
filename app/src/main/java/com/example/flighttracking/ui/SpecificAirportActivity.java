@@ -38,6 +38,7 @@ import retrofit2.Callback;
 
 public class SpecificAirportActivity extends AppCompatActivity {
 
+    private static final String TAG = SpecificAirportActivity.class.getSimpleName();
     @BindView(R.id.search_results) RecyclerView searchResults;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
@@ -65,19 +66,25 @@ public class SpecificAirportActivity extends AppCompatActivity {
         call.enqueue(new Callback<AirportsSearch>() {
             @Override
             public void onResponse(Call<AirportsSearch> call, retrofit2.Response<AirportsSearch> response){
+                hideProgressBar();
                 if(response.isSuccessful()){
-
                     List<AirportsByCountry> airports = response.body().getResponse().getAirportsByCountries();
+
                    SpecificRecyclerAdapter specificRecyclerAdapter = new SpecificRecyclerAdapter(SpecificAirportActivity.this, airports);
                     searchResults.setAdapter(specificRecyclerAdapter);
 //                   myCountryAdapter.setResultList(mList);
                     searchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     searchResults.setHasFixedSize(true);
                 }
+                else{
+                    showUnsuccessfulMessage();
+                }
             }
             @Override
             public void onFailure(Call<AirportsSearch> call, Throwable t) {
-
+                Log.e(TAG, "onFailure: ",t );
+                hideProgressBar();
+                showFailureMessage();
             }
         });
     }
