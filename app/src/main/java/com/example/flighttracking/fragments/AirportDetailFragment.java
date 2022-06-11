@@ -79,7 +79,6 @@ public class AirportDetailFragment extends Fragment implements View.OnClickListe
         return view;
 
     }
-
     @Override
     public void onClick(View v) {
         if (v == mSaveAirport) {
