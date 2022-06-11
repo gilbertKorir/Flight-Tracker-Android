@@ -11,7 +11,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
@@ -36,11 +39,13 @@ import retrofit2.Callback;
 public class SpecificAirportActivity extends AppCompatActivity {
 
     @BindView(R.id.search_results) RecyclerView searchResults;
+    @BindView(R.id.errorTextView) TextView mErrorTextView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 //    public  List<Airport> airports;
 
     //shared prefernce
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +54,6 @@ public class SpecificAirportActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-//        String country = intent.getStringExtra("country");
-
         //retrieving location from shared preference
 //        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
@@ -77,5 +80,22 @@ public class SpecificAirportActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void showFailureMessage() {
+        mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showUnsuccessfulMessage() {
+        mErrorTextView.setText("Something went wrong. Please try again later");
+        mErrorTextView.setVisibility(View.VISIBLE);
+    }
+
+//        private void showRestaurants() {
+//            mRecyclerView.setVisibility(View.VISIBLE);
+//        }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 }
