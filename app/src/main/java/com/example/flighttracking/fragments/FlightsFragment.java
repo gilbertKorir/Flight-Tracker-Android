@@ -42,13 +42,10 @@ import retrofit2.Callback;
 //import com.example.flighttracking.ui.FormActivity;
 
 public class FlightsFragment extends Fragment implements View.OnClickListener{
-    @BindView(R.id.editCountry) EditText msearch;
+//    @BindView(R.id.editCountry) EditText msearch;
     @BindView(R.id.searchButton) Button search;
     AirApi airApi;
     @BindView(R.id.savedAirportsButton) Button mSavedAirportsButton;
-//    private SharedPreferences mSharedPreferences;
-//    private SharedPreferences.Editor mEditor;
-//      private String mRecentCountry;
 
     //Firebase
     private DatabaseReference mSearchedLocationReference;
@@ -78,43 +75,14 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-//
-////        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-////        mEditor = mSharedPreferences.edit();
-        mSearchedLocationReference = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
-        mSearchedLocationReferenceListener = mSearchedLocationReference.addValueEventListener(new ValueEventListener() { //attach listener
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) { //something changed!
-                for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
-                    String location = locationSnapshot.getValue().toString();
-                    Log.d("Locations updated", "location: " + location); //log
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) { //update UI here if error occurred.
-
-            }
-        });
-//
         search.setOnClickListener(this);
         mSavedAirportsButton.setOnClickListener(this);
     }
             @Override
             public void onClick(View v) {
                 if (v == search) {
-                    String country = msearch.getText().toString();
-                    saveLocationToFirebase(country);
-
-//                    if(!(country).equals("")) {
-////                        addToSharedPreferences(country);
-//                        saveLocationToFirebase(country);
-//                    }
                     Intent intent = new Intent(getActivity(), SpecificAirportActivity.class);
-                    intent.putExtra("country",country);
                     startActivity(intent);
                 }
                 if (v == mSavedAirportsButton) {
@@ -122,16 +90,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener{
                     startActivity(intent);
                 }
     }
-    public void saveLocationToFirebase(String country) {
-        mSearchedLocationReference.push().setValue(country);
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mSearchedLocationReference.removeEventListener(mSearchedLocationReferenceListener);
-    }
 
-//    private void addToSharedPreferences(String country) {
-//        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, country).apply();
-//    }
+
 }

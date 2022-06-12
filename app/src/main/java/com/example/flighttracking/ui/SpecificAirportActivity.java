@@ -45,12 +45,9 @@ public class SpecificAirportActivity extends AppCompatActivity {
     private String mRecentCountry;
 
     private static final String TAG = SpecificAirportActivity.class.getSimpleName();
-    @BindView(R.id.search_results)
-    RecyclerView searchResults;
-    @BindView(R.id.errorTextView)
-    TextView mErrorTextView;
-    @BindView(R.id.progressBar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.search_results) RecyclerView searchResults;
+    @BindView(R.id.errorTextView) TextView mErrorTextView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
 
     @Override
@@ -82,12 +79,11 @@ public class SpecificAirportActivity extends AppCompatActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String location) {
-                addToSharedPreferences(location);
-                fetchRestaurants(location);
+            public boolean onQueryTextSubmit(String country) {
+                addToSharedPreferences(country);
+                fetchRestaurants(country);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String location) {
                 return false;
@@ -120,8 +116,8 @@ public class SpecificAirportActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
     }
 
-    private void addToSharedPreferences(String location) {
-        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
+    private void addToSharedPreferences(String country) {
+        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, country).apply();
     }
 
     private void fetchRestaurants(String country) {

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.HomePage"
+    android:background="@drawable/full">
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:text="FOR MOST PEOPLE THE SKY IS THE LIMIT. FOR FLIGHT ATTENDANTS THE SKY IS HOME."
+        android:textColor="#0A0A0B"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/getStart"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="450dp"
+        android:text="Get Started"
+        app:cornerRadius="15dp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="670dp"
+        android:text="Good things comes to those who book flights."
+        android:textColor="#C30818"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+</RelativeLayout>
