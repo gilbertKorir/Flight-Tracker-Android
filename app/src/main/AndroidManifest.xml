@@ -27,18 +27,17 @@
         </activity>
         <activity
             android:name=".ui.SavedAirportListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.AllActivity"/>
         <activity
             android:name=".ui.CreateAccountActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:parentActivityName=".ui.HomePage"/>
 
         <activity
             android:name=".ui.LoginActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.flighttracking.ui.CreateAccountActivity" />
-        </activity>
+            android:exported="true"
+            android:parentActivityName=".ui.CreateAccountActivity"/>
         <activity
             android:name=".ui.AirportsDetailActivity"
             android:exported="false" />
@@ -53,11 +52,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.flighttracking.ui.LoginActivity" />
-        </activity>
+            android:exported="true" />
+<!--            <meta-data-->
+<!--                android:name="android.support.PARENT_ACTIVITY"-->
+<!--                android:value="com.example.flighttracking.ui.LoginActivity" />-->
     </application>
 
 </manifest>
