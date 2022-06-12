@@ -44,12 +44,12 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String mName;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         ButterKnife.bind(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
@@ -135,7 +135,7 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
+                    Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();

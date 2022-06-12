@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CreateAccountActivity">
+    tools:context=".ui.CreateAccountActivity"
+    android:background="@drawable/img_2">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameEditText"
         android:layout_width="334dp"
-        android:layout_height="57dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="#F2F2F3"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,10 +31,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditText"
         android:layout_width="333dp"
-        android:layout_height="59dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
+        android:background="#F2F2F3"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,10 +52,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditText"
         android:layout_width="332dp"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="39dp"
         android:layout_marginEnd="16dp"
+        android:background="#F2F2F3"
         app:boxBackgroundMode="outline"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,10 +74,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirmPasswordEditText"
         android:layout_width="331dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="16dp"
+        android:background="#F2F2F3"
         app:boxBackgroundMode="outline"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"

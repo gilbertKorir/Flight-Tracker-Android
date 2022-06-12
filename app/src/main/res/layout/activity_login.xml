@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginActivity">
+    tools:context=".ui.LoginActivity"
+    android:background="@drawable/pln1">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditText"
         android:layout_width="339dp"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="174dp"
         android:layout_marginEnd="24dp"
+        android:background="#F6F2F0"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="#341073"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +34,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditText"
         android:layout_width="337dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="#F6F2F0"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="#673AB7"
         app:endIconMode="password_toggle"
@@ -75,6 +78,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="Kindly login to access our services."
+        android:textColor="#050101"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"

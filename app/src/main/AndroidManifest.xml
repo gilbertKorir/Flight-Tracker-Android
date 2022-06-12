@@ -52,10 +52,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true" />
-<!--            <meta-data-->
-<!--                android:name="android.support.PARENT_ACTIVITY"-->
-<!--                android:value="com.example.flighttracking.ui.LoginActivity" />-->
+            android:exported="true"
+            android:parentActivityName=".ui.LoginActivity"/>
     </application>
 
 </manifest>
