@@ -16,7 +16,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import com.example.flighttracking.ui.CreateAccountActivity;
-import com.example.flighttracking.ui.LoginActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,9 +29,10 @@ public class CreateAccountActivityInstrumentationTest {
     public ActivityScenarioRule<CreateAccountActivity> activityRule = new ActivityScenarioRule<>(CreateAccountActivity.class);
 
     @Test
-    public void validatetActivity() {
-        String name = "John Doe";
-        String email = "johnbook@gmail.com";
+    public void validateActivity() {
+
+        String name = "Job";
+        String email = "job@gmail.com";
         String password = "121212";
         String conpassword = "121212";
 
@@ -52,12 +52,11 @@ public class CreateAccountActivityInstrumentationTest {
                 withClassName(endsWith("TextInputEditText"))
         )).perform(typeText(conpassword)).perform(closeSoftKeyboard());
 
-        try {                             // the sleep method requires to be checked and handled so we use try block
+        try {
             Thread.sleep(250);
         } catch (InterruptedException e){
             System.out.println("got interrupted!");
         }
         onView(withId(R.id.createUserButton)).perform(click());
     }
-
 }
