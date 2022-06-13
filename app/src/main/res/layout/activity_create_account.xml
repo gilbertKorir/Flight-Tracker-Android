@@ -15,6 +15,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="#F2F2F3"
+        android:textColorHint="#040303"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#050505" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,6 +38,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:background="#F2F2F3"
+        android:textColorHint="#020202"
         app:boxBackgroundMode="outline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +60,7 @@
         android:layout_marginTop="39dp"
         android:layout_marginEnd="16dp"
         android:background="#F2F2F3"
+        android:textColorHint="#050505"
         app:boxBackgroundMode="outline"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +83,7 @@
         android:layout_marginTop="26dp"
         android:layout_marginEnd="16dp"
         android:background="#F2F2F3"
+        android:textColorHint="#040303"
         app:boxBackgroundMode="outline"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"

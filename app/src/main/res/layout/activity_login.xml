@@ -15,6 +15,7 @@
         android:layout_marginTop="174dp"
         android:layout_marginEnd="24dp"
         android:background="#F6F2F0"
+        android:textColorHint="#070606"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="#341073"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText"
+        app:prefixTextColor="#020101"
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText

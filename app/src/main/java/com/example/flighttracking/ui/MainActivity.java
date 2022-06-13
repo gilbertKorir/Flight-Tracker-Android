@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
-    //menu
 
+    //menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
             MenuInflater inflater = getMenuInflater();
