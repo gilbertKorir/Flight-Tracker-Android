@@ -60,8 +60,8 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.StatusView
             mContext = itemView.getContext();
         }
         public void bindStatus(Response response){
-            mReg.setText(response.getRegNumber());
-            mManufat.setText(response.getManufacturer());
+            mReg.setText(response.getStatus());
+            mManufat.setText(response.getDuration().toString());
             mFlight.setText(response.getFlightNumber());
             mDepart.setText(response.getDepTime());
             mArrive.setText(response.getArrTime());
