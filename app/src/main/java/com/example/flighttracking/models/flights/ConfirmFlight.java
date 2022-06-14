@@ -1,0 +1,65 @@
+
+package com.example.flighttracking.models.flights;
+
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+
+public class ConfirmFlight {
+
+    @SerializedName("request")
+    @Expose
+    private Request request;
+    @SerializedName("response")
+    @Expose
+    private Response response;
+    @SerializedName("terms")
+    @Expose
+    private String terms;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public ConfirmFlight() {
+    }
+
+    /**
+     * 
+     * @param request
+     * @param terms
+     * @param response
+     */
+    public ConfirmFlight(Request request, Response response, String terms) {
+        super();
+        this.request = request;
+        this.response = response;
+        this.terms = terms;
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    public String getTerms() {
+        return terms;
+    }
+
+    public void setTerms(String terms) {
+        this.terms = terms;
+    }
+
+}

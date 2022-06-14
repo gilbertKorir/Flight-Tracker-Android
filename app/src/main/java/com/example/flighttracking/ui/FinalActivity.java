@@ -25,6 +25,6 @@ public class FinalActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String date = intent.getStringExtra("date");
-        mfinal.setText("Thank You " + name + " for Booking with us, kindly visit us one day to your depature date" + date);
+        mfinal.setText("Thank You " + name + " for Booking with us, your information has been saved successfully kindly visit us one day to your depature date" + date);
     }
 }

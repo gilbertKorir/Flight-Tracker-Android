@@ -2,6 +2,7 @@ package com.example.flighttracking.network;
 
 import com.example.flighttracking.models.airports.AirportsListResponse;
 import com.example.flighttracking.models.country.CountrySearchResponse;
+import com.example.flighttracking.models.flights.ConfirmFlight;
 import com.example.flighttracking.models.portsbycountry.AirportsSearch;
 import com.example.flighttracking.models.portsbycountry.Response;
 
@@ -17,4 +18,7 @@ public interface AirApi {
         @GET("suggest")
         Call<AirportsSearch> getSpecific(@Query("q") String country,
                                          @Query("api_key") String api_key);
+        @GET("flight")
+        Call<ConfirmFlight> getFlight(@Query("flight_iata") String flight_iata,
+                                        @Query("api_key") String api_key);
 }

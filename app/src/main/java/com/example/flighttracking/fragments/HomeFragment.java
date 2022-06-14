@@ -14,6 +14,7 @@ import com.example.flighttracking.R;
 import com.example.flighttracking.ui.AllActivity;
 import com.example.flighttracking.ui.BookingActivity;
 import com.example.flighttracking.ui.MainActivity;
+import com.example.flighttracking.ui.StatusActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +22,7 @@ import butterknife.ButterKnife;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
    @BindView(R.id.book) CardView mBook;
+   @BindView(R.id.flightcard) CardView mflight;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -47,11 +49,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         mBook.setOnClickListener(this);
+        mflight.setOnClickListener(this);
         return view;
     }
     @Override
     public void onClick(View v) {
+        if(v==mBook) {
             Intent intent = new Intent(getContext(), BookingActivity.class);
             startActivity(intent);
+        }
+        if(v==mflight) {
+            Intent intent = new Intent(getContext(), StatusActivity.class);
+            startActivity(intent);
+        }
     }
 }

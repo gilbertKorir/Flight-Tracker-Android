@@ -17,9 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.StatusDisplayActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.FinalActivity"
             android:exported="false"
-            android:parentActivityName=".ui.BookingActivity"/>
+            android:parentActivityName=".ui.AllActivity" />
         <activity
             android:name=".ui.HomePage"
             android:exported="true">
@@ -50,7 +53,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.BookingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.AllActivity" />
+        <activity
+            android:name=".ui.StatusActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.AllActivity" />
         <activity
             android:name=".ui.AllActivity"
             android:exported="false" />

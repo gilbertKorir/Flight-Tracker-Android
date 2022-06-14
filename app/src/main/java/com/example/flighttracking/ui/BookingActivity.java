@@ -31,6 +31,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
 //        getSupportActionBar().hide(); //hide the title bar
         setContentView(R.layout.activity_booking);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
 
