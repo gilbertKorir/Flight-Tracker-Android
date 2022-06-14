@@ -17,8 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".FinalActivity"
-            android:exported="false" />
+            android:name=".ui.FinalActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.BookingActivity"/>
         <activity
             android:name=".ui.HomePage"
             android:exported="true">
