@@ -42,6 +42,7 @@ public class AirportsByCountry {
      * No args constructor for use in serialization
      * 
      */
+    private String pushId;
     public AirportsByCountry() {
     }
 
@@ -140,6 +141,14 @@ public class AirportsByCountry {
 
     public void setCityCode(String cityCode) {
         this.cityCode = cityCode;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 
 }

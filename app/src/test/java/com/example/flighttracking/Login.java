@@ -1,8 +1,7 @@
 package com.example.flighttracking;
 
-import static org.junit.Assert.assertEquals;
 
-import android.widget.EditText;
+import static org.junit.Assert.assertEquals;
 
 import com.example.flighttracking.ui.LoginActivity;
 import com.google.android.material.textfield.TextInputEditText;
@@ -15,7 +14,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 @RunWith(RobolectricTestRunner.class)
-public class LoginActivityTest {
+public class Login {
     private LoginActivity loginActivity;
 
     @Before
@@ -26,8 +25,8 @@ public class LoginActivityTest {
                 .get();
     }
     @Test
-    public void checkLoginContent(){
-        TextInputEditText email = loginActivity.findViewById(R.id.emailEditText);
-        assertEquals("Email", email.getHint());
+    public void checkPassword(){
+        TextInputLayout password = loginActivity.findViewById(R.id.passwordEditText);
+        assertEquals("Password", password.getEditText().getHint());
     }
 }

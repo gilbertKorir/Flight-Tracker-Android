@@ -18,6 +18,8 @@ import com.example.flighttracking.adapters.FirebaseAirportViewHolder;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,9 +41,13 @@ public class SavedAirportListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specific_airport);
         ButterKnife.bind(this);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
         mAirportReference = FirebaseDatabase
                 .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_AIRPORTS);
+                .getReference(Constants.FIREBASE_CHILD_AIRPORTS)
+                .child(uid);
 
         setUpFirebaseAdapter();
         hideProgressBar();

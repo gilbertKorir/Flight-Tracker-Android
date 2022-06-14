@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -82,10 +84,18 @@ public class AirportDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mSaveAirport) {
-            DatabaseReference restaurantRef = FirebaseDatabase
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            DatabaseReference airportRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_AIRPORTS);
-            restaurantRef.push().setValue(mAirport);
+                    .getReference(Constants.FIREBASE_CHILD_AIRPORTS)
+                    .child(uid);
+            DatabaseReference pushRef = airportRef.push();
+            String pushId = pushRef.getKey();
+            mAirport.setPushId(pushId);
+            pushRef.setValue(mAirport);
+
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
