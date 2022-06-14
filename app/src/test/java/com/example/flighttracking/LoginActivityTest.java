@@ -26,6 +26,6 @@ public class LoginActivityTest {
     @Test
     public void validateLoginContent(){
         EditText email = loginActivity.findViewById(R.id.emailEditText);
-        assertEquals("Email", email.getText());
+        assertEquals("Email", email.getHint());
     }
 }

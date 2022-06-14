@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FirebaseApp.initializeApp(this);
+
         mAuth = FirebaseAuth.getInstance();
 
         mRegisterTextView.setOnClickListener(this);
