@@ -12,10 +12,10 @@
     <fragment
         android:id="@+id/fragmentAirportList"
         android:name="com.example.flighttracking.fragments.AirportListFragment"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="3"
-        tools:layout="@layout/fragment_airport_list"/>
+        tools:layout="@layout/fragment_airport_list" />
 
     <View
         android:layout_width="3dp"
@@ -23,8 +23,8 @@
         android:background="#FF5722" />
 
     <FrameLayout
-        android:id="@+id/restaurantDetailContainer"
-        android:layout_width="0dp"
+        android:id="@+id/airportDetailContainer"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="6">
 

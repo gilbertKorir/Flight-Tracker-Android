@@ -12,6 +12,7 @@ import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 public class AirportsDetailActivity extends AppCompatActivity {
     @BindView(R.id.viewPager) ViewPager mViewPager;
     private AiportPageAdapter adapterViewPager;
-    List<AirportsByCountry> mAirports;
+    ArrayList<AirportsByCountry> mAirports = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

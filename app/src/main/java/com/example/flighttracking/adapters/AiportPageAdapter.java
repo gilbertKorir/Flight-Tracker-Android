@@ -8,12 +8,13 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.flighttracking.fragments.AirportDetailFragment;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AiportPageAdapter extends FragmentPagerAdapter {
-    private List<AirportsByCountry> mAirports;
+    private ArrayList<AirportsByCountry> mAirports;
 
-    public AiportPageAdapter(@NonNull FragmentManager fm, int behavior, List<AirportsByCountry> airports) {
+    public AiportPageAdapter(@NonNull FragmentManager fm, int behavior, ArrayList<AirportsByCountry> airports) {
         super(fm, behavior);
         this.mAirports = airports;
     }
@@ -21,7 +22,7 @@ public class AiportPageAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return AirportDetailFragment.newInstance(mAirports.get(position));
+        return AirportDetailFragment.newInstance(mAirports, position);
     }
 
     @Override

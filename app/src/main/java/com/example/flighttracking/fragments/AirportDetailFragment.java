@@ -23,6 +23,8 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -39,16 +41,21 @@ public class AirportDetailFragment extends Fragment implements View.OnClickListe
     @BindView(R.id.airportImageView) ImageView mImageview;
     @BindView(R.id.saveAirport) Button mSaveAirport;
 
-    private AirportsByCountry mAirport;
+    private ArrayList<AirportsByCountry> mAirports;
+    private  AirportsByCountry mAirport;
+    private int mPosition;
 
     public AirportDetailFragment() {
         // Required empty public constructor
     }
 
-    public static AirportDetailFragment newInstance(AirportsByCountry airport) {
+    public static AirportDetailFragment newInstance(ArrayList<AirportsByCountry> airports, Integer position) {
         AirportDetailFragment airportDetailFragment = new AirportDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("airport", Parcels.wrap(airport));
+
+        args.putParcelable(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(airports));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
+
         airportDetailFragment.setArguments(args);
         return airportDetailFragment;
     }
@@ -57,7 +64,10 @@ public class AirportDetailFragment extends Fragment implements View.OnClickListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mAirport = Parcels.unwrap(getArguments().getParcelable("airport"));
+//            mAirport = Parcels.unwrap(getArguments().getParcelable("airport"));
+            mAirports = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_AIRPORTS));
+            mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+            mAirport = mAirports.get(mPosition);
         }
     }
 

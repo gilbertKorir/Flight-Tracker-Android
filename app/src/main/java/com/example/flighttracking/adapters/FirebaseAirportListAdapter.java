@@ -2,14 +2,19 @@ package com.example.flighttracking.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
+import com.example.flighttracking.fragments.AirportDetailFragment;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 import com.example.flighttracking.ui.AirportsDetailActivity;
 import com.example.flighttracking.utils.ItemTouchHelperAdapter;
@@ -35,6 +40,7 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
     private Context mContext;
     private ChildEventListener mChildEventListener;
     private ArrayList<AirportsByCountry> mAirports = new ArrayList<>();
+    private int mOrientation;
 
     public FirebaseAirportListAdapter(@NonNull FirebaseRecyclerOptions<AirportsByCountry> options,
                                       Query ref,
@@ -72,6 +78,13 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
     @Override
     protected void onBindViewHolder(@NonNull final FirebaseAirportViewHolder viewHolder, int position, @NonNull AirportsByCountry airport) {
         viewHolder.bindSpecific(airport);
+
+
+        mOrientation = viewHolder.itemView.getResources().getConfiguration().orientation;
+        if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            createDetailFragment(0);
+        }
+
         viewHolder.mNameview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -80,16 +93,35 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
                 }
                 return false;
             }
+
         });
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, AirportsDetailActivity.class);
-                intent.putExtra("position", viewHolder.getAdapterPosition());
-                intent.putExtra("airports", Parcels.wrap(mAirports));
-                mContext.startActivity(intent);
+                int itemPosition = viewHolder.getAdapterPosition();
+                 if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    createDetailFragment(itemPosition);
+                } else {
+                     Intent intent = new Intent(mContext, AirportsDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                    intent.putExtra(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(mAirports));
+                    mContext.startActivity(intent);
+                }
+//                intent.putExtra("position", viewHolder.getAdapterPosition());
+//                intent.putExtra("airports", Parcels.wrap(mAirports));
+//                mContext.startActivity(intent);
             }
         });
+    }
+    private void createDetailFragment(int position) {
+        // Creates new RestaurantDetailFragment with the given position:
+       AirportDetailFragment detailFragment = AirportDetailFragment.newInstance(mAirports, position);
+        // Gathers necessary components to replace the FrameLayout in the layout with the RestaurantDetailFragment:
+        FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+        //  Replaces the FrameLayout with the RestaurantDetailFragment:
+        ft.replace(R.id.airportDetailContainer, detailFragment);
+        // Commits these changes:
+        ft.commit();
     }
 
     @NonNull

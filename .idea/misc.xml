@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.191" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.191" />
         <entry key="app/src/main/res/layout-land/activity_specific_airport.xml" value="0.164021164021164" />
+        <entry key="app/src/main/res/layout-land/fragment_aiport_detail.xml" value="0.16313932980599646" />
+        <entry key="app/src/main/res/layout-land/fragment_airport_detail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_airports_detail.xml" value="0.1490036231884058" />
         <entry key="app/src/main/res/layout/activity_all.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/layout/activity_booking.xml" value="0.25" />
