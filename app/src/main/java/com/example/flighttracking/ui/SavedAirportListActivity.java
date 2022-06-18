@@ -66,7 +66,7 @@ public class SavedAirportListActivity extends AppCompatActivity {
             @NonNull
             @Override
             public FirebaseAirportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.specific, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.specific_drag, parent, false);
                 return new FirebaseAirportViewHolder(view);
             }
         };
