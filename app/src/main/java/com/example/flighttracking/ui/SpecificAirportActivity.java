@@ -61,7 +61,7 @@ public class SpecificAirportActivity extends AppCompatActivity {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mRecentCountry = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
         if (mRecentCountry != null) {
-            fetchRestaurants(mRecentCountry);
+            fetchAirports(mRecentCountry);
         }
     }
 
@@ -81,7 +81,7 @@ public class SpecificAirportActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String country) {
                 addToSharedPreferences(country);
-                fetchRestaurants(country);
+                fetchAirports(country);
                 return false;
             }
             @Override
@@ -120,7 +120,7 @@ public class SpecificAirportActivity extends AppCompatActivity {
         mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, country).apply();
     }
 
-    private void fetchRestaurants(String country) {
+    private void fetchAirports(String country) {
         AirApi client = AirClient.getClient();
         Call<AirportsSearch> call = client.getSpecific(country, Constants.AIR_API_KEY);
 

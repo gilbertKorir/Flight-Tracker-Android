@@ -1,5 +1,7 @@
 package com.example.flighttracking.adapters;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flighttracking.R;
 import com.example.flighttracking.models.airports.Response;
+import com.example.flighttracking.utils.ItemTouchHelperViewHolder;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyAirportAdapter extends RecyclerView.Adapter<MyAirportAdapter.MyViewHolder> {
+public class MyAirportAdapter extends RecyclerView.Adapter<MyAirportAdapter.MyViewHolder> implements ItemTouchHelperViewHolder {
 
     private Context mContext;
     private List<Response> responses;
+    View mView;
 
     public MyAirportAdapter(Context mContext, List<Response> responses) {
         this.mContext = mContext;
@@ -45,6 +49,7 @@ public class MyAirportAdapter extends RecyclerView.Adapter<MyAirportAdapter.MyVi
         return responses.size();
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.airportView) TextView mAirport;
         @BindView(R.id.iata) TextView mIata;
@@ -56,6 +61,7 @@ public class MyAirportAdapter extends RecyclerView.Adapter<MyAirportAdapter.MyVi
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mView = itemView;
         }
         public void bindCountry(Response response){
             mAirport.setText(response.getName());
@@ -66,4 +72,20 @@ public class MyAirportAdapter extends RecyclerView.Adapter<MyAirportAdapter.MyVi
 
         }
     }
-}
+
+    // XML ANIMATIONS
+    @Override
+    public void onItemSelected() {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_on);
+        set.setTarget(mView);
+        set.start();
+    }
+
+    @Override
+    public void onItemClear() {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_off);
+        set.setTarget(mView);
+        set.start();
+    }}

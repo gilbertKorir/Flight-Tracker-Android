@@ -33,7 +33,6 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
     private Query mRef;
     private OnStartDragListener mOnStartDragListener;
     private Context mContext;
-
     private ChildEventListener mChildEventListener;
     private ArrayList<AirportsByCountry> mAirports = new ArrayList<>();
 
@@ -51,22 +50,18 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 mAirports.add(dataSnapshot.getValue(AirportsByCountry.class));
             }
-
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
-
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -75,8 +70,8 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final FirebaseAirportViewHolder viewHolder, int position, @NonNull AirportsByCountry model) {
-        viewHolder.bindSpecific(model);
+    protected void onBindViewHolder(@NonNull final FirebaseAirportViewHolder viewHolder, int position, @NonNull AirportsByCountry airport) {
+        viewHolder.bindSpecific(airport);
         viewHolder.mNameview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -87,7 +82,6 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
             }
         });
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AirportsDetailActivity.class);
