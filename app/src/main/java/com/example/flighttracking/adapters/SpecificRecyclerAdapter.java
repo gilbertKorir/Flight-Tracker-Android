@@ -67,9 +67,9 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
         }
         public void bindSpecific(AirportsByCountry airport){
             name.setText(airport.getName());
-            popularity.setText(airport.getPopularity().toString());
-            city.setText(airport.getCityCode());
-            country.setText(airport.getCountryCode());
+            popularity.setText("Popularity: " + airport.getPopularity().toString());
+            city.setText("City code: " + airport.getCityCode());
+            country.setText("Country code: " + airport.getCountryCode());
         }
         @Override
         public void onClick(View v) {

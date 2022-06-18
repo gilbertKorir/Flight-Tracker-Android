@@ -42,9 +42,9 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implement
         TextView countryTextView = (TextView) mView.findViewById(R.id.countryCode);
 
         nameTextView.setText(airport.getName());
-        popularityTextView.setText(airport.getPopularity().toString());
-        cityTextView.setText(airport.getCityCode());
-        countryTextView.setText(airport.getCountryCode());
+        popularityTextView.setText("Popularity: " + airport.getPopularity().toString());
+        cityTextView.setText("City code: " + airport.getCityCode());
+        countryTextView.setText("Country code: " + airport.getCountryCode());
     }
 
     @Override
