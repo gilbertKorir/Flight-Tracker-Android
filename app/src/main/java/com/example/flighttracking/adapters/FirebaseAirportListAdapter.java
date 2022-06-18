@@ -54,11 +54,12 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+        notifyItemMoved(fromPosition, toPosition);
         return false;
     }
 
     @Override
     public void onItemDismiss(int position) {
-
+        getRef(position).removeValue();
     }
 }
