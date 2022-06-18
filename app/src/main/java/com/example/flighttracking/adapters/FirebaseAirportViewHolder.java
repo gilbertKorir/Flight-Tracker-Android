@@ -1,5 +1,7 @@
 package com.example.flighttracking.adapters;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -55,49 +57,37 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implement
         countryTextView.setText("Country code: " + airport.getCountryCode());
     }
 
-    @Override
-    public void onItemSelected() {
-        itemView.animate()
-                .alpha(0.7f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-    }
-    @Override
-    public void onItemClear() {
-        itemView.animate()
-                .alpha(1f)
-                .scaleX(1f)
-                .scaleY(1f);
-    }
-
+    // Programmatic animations
 //    @Override
-//    public void onClick(View v) {
-//        final ArrayList<AirportsByCountry> airports = new ArrayList<>();
-//
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        String uid = user.getUid();
-////        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid);
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
-//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    airports.add(snapshot.getValue(AirportsByCountry.class));
-//                }
-//
-//                int itemPosition = getLayoutPosition();
-//                Intent intent = new Intent(mContext, AirportsDetailActivity.class);
-//                intent.putExtra("position", itemPosition + "");
-//                intent.putExtra("airports", Parcels.wrap(airports));
-//
-//                mContext.startActivity(intent);
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+//    public void onItemSelected() {
+//        itemView.animate()
+//                .alpha(0.7f)
+//                .scaleX(0.9f)
+//                .scaleY(0.9f)
+//                .setDuration(500);
+//    }
+//    @Override
+//    public void onItemClear() {
+//        itemView.animate()
+//                .alpha(1f)
+//                .scaleX(1f)
+//                .scaleY(1f);
 //    }
 
+    // XML ANIMATIONS
+    @Override
+    public void onItemSelected() {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_on);
+        set.setTarget(itemView);
+        set.start();
+    }
+
+    @Override
+    public void onItemClear() {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,
+                R.animator.drag_scale_off);
+        set.setTarget(itemView);
+        set.start();
+    }
 }
