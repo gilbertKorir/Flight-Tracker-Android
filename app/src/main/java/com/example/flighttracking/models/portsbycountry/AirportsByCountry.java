@@ -43,6 +43,7 @@ public class AirportsByCountry {
      * 
      */
     private String pushId;
+    String index;
     public AirportsByCountry() {
     }
 
@@ -69,6 +70,7 @@ public class AirportsByCountry {
         this.countryCode = countryCode;
         this.popularity = popularity;
         this.cityCode = cityCode;
+        this.index = "not_specified";
     }
 
     public String getName() {
@@ -149,6 +151,13 @@ public class AirportsByCountry {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 
 }

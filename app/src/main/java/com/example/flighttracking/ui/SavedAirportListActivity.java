@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,24 +65,20 @@ public class SavedAirportListActivity extends AppCompatActivity implements OnSta
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mAirportReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
+        Query query = FirebaseDatabase.getInstance()
+                .getReference(Constants.FIREBASE_CHILD_AIRPORTS)
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
+
         FirebaseRecyclerOptions<AirportsByCountry> options =
                 new FirebaseRecyclerOptions.Builder<AirportsByCountry>()
-                        .setQuery(mAirportReference, AirportsByCountry.class)
+                        .setQuery(query, AirportsByCountry.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseAirportListAdapter(options,mAirportReference,(OnStartDragListener) this, this);
-//            @Override
-//            protected void onBindViewHolder(@NonNull FirebaseAirportViewHolder firebaseAirportViewHolder, int position, @NonNull AirportsByCountry airport) {
-//                firebaseAirportViewHolder.bindSpecific(airport);
-//            }
-//            @NonNull
-//            @Override
-//            public FirebaseAirportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.specific_drag, parent, false);
-//                return new FirebaseAirportViewHolder(view);
-//            }
-//        };
+//        mAirportReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
+
+        mFirebaseAdapter = new FirebaseAirportListAdapter(options, (DatabaseReference) query, this, this);
+
         searchResults.setLayoutManager(new LinearLayoutManager(this));
         searchResults.setAdapter(mFirebaseAdapter);
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
@@ -111,4 +108,8 @@ public class SavedAirportListActivity extends AppCompatActivity implements OnSta
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.stopListening(); }
 }

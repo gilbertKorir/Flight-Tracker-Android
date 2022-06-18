@@ -8,4 +8,5 @@ public final class Constants {
     public static final String PREFERENCES_LOCATION_KEY = "country";
     public static final String FIREBASE_CHILD_SEARCHED_LOCATION = "searchedCountry";
     public static final String FIREBASE_CHILD_AIRPORTS = "airports";
+    public static final String FIREBASE_QUERY_INDEX = "index";
 }

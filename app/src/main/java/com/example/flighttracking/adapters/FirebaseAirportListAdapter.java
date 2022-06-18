@@ -14,21 +14,60 @@ import com.example.flighttracking.utils.ItemTouchHelperAdapter;
 import com.example.flighttracking.utils.OnStartDragListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 
-public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<AirportsByCountry, FirebaseAirportViewHolder> implements ItemTouchHelperAdapter {
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<AirportsByCountry, FirebaseAirportViewHolder>
+        implements ItemTouchHelperAdapter {
+
     private DatabaseReference mRef;
     private OnStartDragListener mOnStartDragListener;
     private Context mContext;
 
+    private ChildEventListener mChildEventListener;
+    private ArrayList<AirportsByCountry> mAirports = new ArrayList<>();
+
     public FirebaseAirportListAdapter(@NonNull FirebaseRecyclerOptions<AirportsByCountry> options,
-                                      DatabaseReference ref,
+                                      Query ref,
                                       OnStartDragListener onStartDragListener,
                                       Context context) {
         super(options);
         mRef = ref.getRef();
         mOnStartDragListener = onStartDragListener;
         mContext = context;
+
+        mChildEventListener = mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                mAirports.add(dataSnapshot.getValue(AirportsByCountry.class));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -52,14 +91,17 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
         return new FirebaseAirportViewHolder(view);
     }
 
+
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+        Collections.swap(mAirports, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return false;
     }
 
     @Override
     public void onItemDismiss(int position) {
+        mAirports.remove(position);
         getRef(position).removeValue();
     }
 }
