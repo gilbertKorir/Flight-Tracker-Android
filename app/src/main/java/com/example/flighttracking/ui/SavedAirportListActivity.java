@@ -2,6 +2,7 @@ package com.example.flighttracking.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +15,11 @@ import android.widget.TextView;
 
 import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
+import com.example.flighttracking.adapters.FirebaseAirportListAdapter;
 import com.example.flighttracking.adapters.FirebaseAirportViewHolder;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
+import com.example.flighttracking.utils.OnStartDragListener;
+import com.example.flighttracking.utils.SimpleItemTouchHelperCallback;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,10 +30,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SavedAirportListActivity extends AppCompatActivity {
+public class SavedAirportListActivity extends AppCompatActivity implements OnStartDragListener {
 
     private DatabaseReference mAirportReference;
-    private FirebaseRecyclerAdapter<AirportsByCountry, FirebaseAirportViewHolder> mFirebaseAdapter;
+//    private FirebaseRecyclerAdapter<AirportsByCountry, FirebaseAirportViewHolder> mFirebaseAdapter;
+//    private DatabaseReference mRestaurantReference;
+    private FirebaseAirportListAdapter mFirebaseAdapter;
+    private ItemTouchHelper mItemTouchHelper;
 
     @BindView(R.id.search_results) RecyclerView searchResults;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
@@ -41,37 +48,45 @@ public class SavedAirportListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specific_airport);
         ButterKnife.bind(this);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        mAirportReference = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_AIRPORTS)
-                .child(uid);
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        String uid = user.getUid();
+//
+//        mAirportReference = FirebaseDatabase
+//                .getInstance()
+//                .getReference(Constants.FIREBASE_CHILD_AIRPORTS)
+//                .child(uid);
 
         setUpFirebaseAdapter();
         hideProgressBar();
         showRestaurants();
     }
     private void setUpFirebaseAdapter(){
-        FirebaseRecyclerOptions<AirportsByCountry> options = new FirebaseRecyclerOptions.Builder<AirportsByCountry>()
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mAirportReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
+        FirebaseRecyclerOptions<AirportsByCountry> options =
+                new FirebaseRecyclerOptions.Builder<AirportsByCountry>()
                         .setQuery(mAirportReference, AirportsByCountry.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<AirportsByCountry, FirebaseAirportViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull FirebaseAirportViewHolder firebaseAirportViewHolder, int position, @NonNull AirportsByCountry airport) {
-                firebaseAirportViewHolder.bindSpecific(airport);
-            }
-            @NonNull
-            @Override
-            public FirebaseAirportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.specific_drag, parent, false);
-                return new FirebaseAirportViewHolder(view);
-            }
-        };
+        mFirebaseAdapter = new FirebaseAirportListAdapter(options,mAirportReference,(OnStartDragListener) this, this);
+//            @Override
+//            protected void onBindViewHolder(@NonNull FirebaseAirportViewHolder firebaseAirportViewHolder, int position, @NonNull AirportsByCountry airport) {
+//                firebaseAirportViewHolder.bindSpecific(airport);
+//            }
+//            @NonNull
+//            @Override
+//            public FirebaseAirportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.specific_drag, parent, false);
+//                return new FirebaseAirportViewHolder(view);
+//            }
+//        };
         searchResults.setLayoutManager(new LinearLayoutManager(this));
         searchResults.setAdapter(mFirebaseAdapter);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(searchResults);
     }
     @Override
     protected void onStart() {
@@ -90,5 +105,10 @@ public class SavedAirportListActivity extends AppCompatActivity {
     }
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 }

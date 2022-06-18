@@ -3,6 +3,7 @@ package com.example.flighttracking.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implement
 
     View mView;
     Context mContext;
+    public TextView mNameview;
 
     public FirebaseAirportViewHolder(View itemView) {
         super(itemView);
@@ -36,12 +38,12 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implement
         itemView.setOnClickListener(this);
     }
     public void bindSpecific(AirportsByCountry airport){
-        TextView nameTextView = (TextView) mView.findViewById(R.id.nameView);
+        mNameview = (TextView) mView.findViewById(R.id.nameView);
         TextView popularityTextView = (TextView) mView.findViewById(R.id.popularity);
         TextView cityTextView = (TextView) mView.findViewById(R.id.cityCode);
         TextView countryTextView = (TextView) mView.findViewById(R.id.countryCode);
 
-        nameTextView.setText(airport.getName());
+        mNameview.setText(airport.getName());
         popularityTextView.setText("Popularity: " + airport.getPopularity().toString());
         cityTextView.setText("City code: " + airport.getCityCode());
         countryTextView.setText("Country code: " + airport.getCountryCode());
