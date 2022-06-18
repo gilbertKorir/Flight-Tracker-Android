@@ -13,6 +13,7 @@ import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 import com.example.flighttracking.ui.AirportsDetailActivity;
+import com.example.flighttracking.utils.ItemTouchHelperViewHolder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,10 +27,11 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 
-public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder {
+public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
+
 
     View mView;
     Context mContext;
@@ -53,5 +55,49 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder {
         countryTextView.setText("Country code: " + airport.getCountryCode());
     }
 
+    @Override
+    public void onItemSelected() {
+        itemView.animate()
+                .alpha(0.7f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+    }
+    @Override
+    public void onItemClear() {
+        itemView.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f);
+    }
+
+//    @Override
+//    public void onClick(View v) {
+//        final ArrayList<AirportsByCountry> airports = new ArrayList<>();
+//
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        String uid = user.getUid();
+////        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid);
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    airports.add(snapshot.getValue(AirportsByCountry.class));
+//                }
+//
+//                int itemPosition = getLayoutPosition();
+//                Intent intent = new Intent(mContext, AirportsDetailActivity.class);
+//                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("airports", Parcels.wrap(airports));
+//
+//                mContext.startActivity(intent);
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
 }
