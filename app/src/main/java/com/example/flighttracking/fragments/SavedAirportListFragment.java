@@ -32,28 +32,9 @@ public class SavedAirportListFragment extends Fragment implements OnStartDragLis
     private FirebaseAirportListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
 
-
     public SavedAirportListFragment() {
         // Required empty public constructor
     }
-
-//    public static SavedAirportListFragment newInstance(String param1, String param2) {
-//        SavedAirportListFragment fragment = new SavedAirportListFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,6 +84,21 @@ public class SavedAirportListFragment extends Fragment implements OnStartDragLis
     //method is now public
     public void onDestroy() {
         super.onDestroy();
-        mFirebaseAdapter.stopListening();
+        if(mFirebaseAdapter!= null) {
+            mFirebaseAdapter.stopListening();
+        }
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mFirebaseAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(mFirebaseAdapter!= null) {
+            mFirebaseAdapter.stopListening();
+        }
     }
 }

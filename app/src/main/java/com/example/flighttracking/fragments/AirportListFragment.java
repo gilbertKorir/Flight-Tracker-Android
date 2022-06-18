@@ -41,7 +41,7 @@ import retrofit2.Callback;
 public class AirportListFragment extends Fragment {
     @BindView(R.id.search_results) RecyclerView searchResults;
     private SpecificRecyclerAdapter mAdapter;
-//    public ArrayList<AirportsByCountry> mAirports = new ArrayList<>();
+    public ArrayList<AirportsByCountry> mAirports = new ArrayList<>();
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentAddress;
@@ -116,10 +116,10 @@ public class AirportListFragment extends Fragment {
 //                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 //                    searchResults.setLayoutManager(layoutManager);
 //                    searchResults.setHasFixedSize(true);
-                    ArrayList<AirportsByCountry> airports = (ArrayList<AirportsByCountry>) response.body().getResponse().getAirportsByCountries();
+                    mAirports = (ArrayList<AirportsByCountry>) response.body().getResponse().getAirportsByCountries();
 
-                    SpecificRecyclerAdapter specificRecyclerAdapter = new SpecificRecyclerAdapter(getActivity(), airports);
-                    searchResults.setAdapter(specificRecyclerAdapter);
+                    mAdapter = new SpecificRecyclerAdapter(getContext(), mAirports);
+                    searchResults.setAdapter(mAdapter);
 //                   myCountryAdapter.setResultList(mList);
                     searchResults.setLayoutManager(new LinearLayoutManager(getActivity()));
                     searchResults.setHasFixedSize(true);
