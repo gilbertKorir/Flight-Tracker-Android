@@ -25,7 +25,10 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder {
+
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
 
     View mView;
     Context mContext;
@@ -35,7 +38,7 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implement
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
+//        itemView.setOnClickListener(this);
     }
     public void bindSpecific(AirportsByCountry airport){
         mNameview = (TextView) mView.findViewById(R.id.nameView);
@@ -49,33 +52,33 @@ public class FirebaseAirportViewHolder extends RecyclerView.ViewHolder implement
         countryTextView.setText("Country code: " + airport.getCountryCode());
     }
 
-    @Override
-    public void onClick(View v) {
-        final ArrayList<AirportsByCountry> airports = new ArrayList<>();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    airports.add(snapshot.getValue(AirportsByCountry.class));
-                }
-
-                int itemPosition = getLayoutPosition();
-                Intent intent = new Intent(mContext, AirportsDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("airports", Parcels.wrap(airports));
-
-                mContext.startActivity(intent);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    @Override
+//    public void onClick(View v) {
+//        final ArrayList<AirportsByCountry> airports = new ArrayList<>();
+//
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        String uid = user.getUid();
+////        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid);
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    airports.add(snapshot.getValue(AirportsByCountry.class));
+//                }
+//
+//                int itemPosition = getLayoutPosition();
+//                Intent intent = new Intent(mContext, AirportsDetailActivity.class);
+//                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("airports", Parcels.wrap(airports));
+//
+//                mContext.startActivity(intent);
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
 }

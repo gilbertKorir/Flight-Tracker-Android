@@ -31,6 +31,7 @@ public class AirportsDetailActivity extends AppCompatActivity {
 
         mAirports = Parcels.unwrap(getIntent().getParcelableExtra("airports"));
         int startingPosition = getIntent().getIntExtra("position", 0);
+//        int startingPosition = getIntent().getIntExtra("position", 0);
 
         adapterViewPager = new AiportPageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, mAirports);
         mViewPager.setAdapter(adapterViewPager);

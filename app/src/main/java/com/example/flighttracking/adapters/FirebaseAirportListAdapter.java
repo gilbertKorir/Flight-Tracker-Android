@@ -1,6 +1,7 @@
 package com.example.flighttracking.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.example.flighttracking.R;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
+import com.example.flighttracking.ui.AirportsDetailActivity;
 import com.example.flighttracking.utils.ItemTouchHelperAdapter;
 import com.example.flighttracking.utils.OnStartDragListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -20,13 +22,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<AirportsByCountry, FirebaseAirportViewHolder>
         implements ItemTouchHelperAdapter {
 
-    private DatabaseReference mRef;
+    private Query mRef;
     private OnStartDragListener mOnStartDragListener;
     private Context mContext;
 
@@ -71,15 +75,25 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull FirebaseAirportViewHolder firebaseAirportViewHolder, int position, @NonNull AirportsByCountry airport) {
-        firebaseAirportViewHolder.bindSpecific(airport);
-        firebaseAirportViewHolder.mNameview.setOnTouchListener(new View.OnTouchListener() {
+    protected void onBindViewHolder(@NonNull final FirebaseAirportViewHolder viewHolder, int position, @NonNull AirportsByCountry model) {
+        viewHolder.bindSpecific(model);
+        viewHolder.mNameview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                    mOnStartDragListener.onStartDrag(firebaseAirportViewHolder);
+                    mOnStartDragListener.onStartDrag(viewHolder);
                 }
                 return false;
+            }
+        });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AirportsDetailActivity.class);
+                intent.putExtra("position", viewHolder.getAdapterPosition());
+                intent.putExtra("airports", Parcels.wrap(mAirports));
+                mContext.startActivity(intent);
             }
         });
     }
@@ -96,7 +110,17 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
     public boolean onItemMove(int fromPosition, int toPosition) {
         Collections.swap(mAirports, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
+        setIndexInForebase();
         return false;
+    }
+
+    private void setIndexInForebase() {
+            for (AirportsByCountry airport : mAirports) {
+                int index = mAirports.indexOf(airport);
+                DatabaseReference ref = getRef(index);
+                airport.setIndex(Integer.toString(index));
+                ref.setValue(airport);
+        }
     }
 
     @Override
@@ -104,4 +128,14 @@ public class FirebaseAirportListAdapter extends FirebaseRecyclerAdapter<Airports
         mAirports.remove(position);
         getRef(position).removeValue();
     }
+    @Override
+    public void stopListening() {
+        super.stopListening();
+        mRef.removeEventListener(mChildEventListener);
+    }
+
+//    @Override
+//    protected void onBindViewHolder(@NonNull final FirebaseAirportViewHolder vieHolder, int position, @NonNull AirportsByCountry model) {
+//
+//    }
 }

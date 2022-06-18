@@ -77,7 +77,7 @@ public class SavedAirportListActivity extends AppCompatActivity implements OnSta
 
 //        mAirportReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_AIRPORTS).child(uid);
 
-        mFirebaseAdapter = new FirebaseAirportListAdapter(options, (DatabaseReference) query, this, this);
+        mFirebaseAdapter = new FirebaseAirportListAdapter(options, query, this, this);
 
         searchResults.setLayoutManager(new LinearLayoutManager(this));
         searchResults.setAdapter(mFirebaseAdapter);
