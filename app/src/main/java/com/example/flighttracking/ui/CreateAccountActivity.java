@@ -112,7 +112,6 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
         if (!validEmail || !validName || !validPassword) return;
 
         showProgressBar();//when the process is on
-
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -151,7 +150,6 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
 
         user.updateProfile(addProfileName)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
-
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
@@ -181,7 +179,6 @@ public class CreateAccountActivity extends AppCompatActivity implements  View.On
         mLoadingSignUp.setVisibility(View.VISIBLE);
         mLoadingSignUp.setText("Sign Up process in Progress");
     }
-
     private void hideProgressBar() {
         mSignInProgressBar.setVisibility(View.GONE);
         mLoadingSignUp.setVisibility(View.GONE);
