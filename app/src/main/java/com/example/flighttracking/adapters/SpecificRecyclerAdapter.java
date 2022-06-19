@@ -97,13 +97,14 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
         public void onClick(View v) {
             //clicking individual airport
             int itemPosition = getLayoutPosition();
-            mOnAirportSelectedListener.onAiportSelected(itemPosition, mairports);
+            mOnAirportSelectedListener.onAiportSelected(itemPosition, mairports, Constants.SOURCE_FIND);
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(itemPosition);
             } else {
                 Intent intent = new Intent(context, AirportsDetailActivity.class);
                 intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
                 intent.putExtra(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(mairports));
+                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
                 context.startActivity(intent);
             }
 //            Intent intent = new Intent(context, AirportsDetailActivity.class);
@@ -114,7 +115,7 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
         // Takes position of restaurant in list as parameter:
         private void createDetailFragment(int position) {
             // Creates new RestaurantDetailFragment with the given position:
-            AirportDetailFragment detailFragment = AirportDetailFragment.newInstance(mairports, position);
+            AirportDetailFragment detailFragment = AirportDetailFragment.newInstance(mairports, position, Constants.SOURCE_FIND);
             // Gathers necessary components to replace the FrameLayout in the layout with the RestaurantDetailFragment:
             FragmentTransaction ft = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
             //  Replaces the FrameLayout with the RestaurantDetailFragment:

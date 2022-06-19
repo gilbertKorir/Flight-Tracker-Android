@@ -13,16 +13,18 @@ import java.util.List;
 
 public class AiportPageAdapter extends FragmentPagerAdapter {
     private ArrayList<AirportsByCountry> mAirports;
+    private String mSource;
 
-    public AiportPageAdapter(@NonNull FragmentManager fm, int behavior, ArrayList<AirportsByCountry> airports) {
+    public AiportPageAdapter(@NonNull FragmentManager fm, int behavior, ArrayList<AirportsByCountry> airports, String source) {
         super(fm, behavior);
         this.mAirports = airports;
+        mSource = source;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return AirportDetailFragment.newInstance(mAirports, position);
+        return AirportDetailFragment.newInstance(mAirports, position, mSource);
     }
 
     @Override

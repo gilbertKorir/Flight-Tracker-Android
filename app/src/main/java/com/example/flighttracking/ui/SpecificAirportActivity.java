@@ -49,6 +49,7 @@ public class SpecificAirportActivity extends AppCompatActivity implements OnAirp
 //    private String mRecentCountry;
     private Integer mPosition;
     ArrayList<AirportsByCountry> mAirports;
+    String mSource;
 
     private static final String TAG = SpecificAirportActivity.class.getSimpleName();
 //    @BindView(R.id.search_results) RecyclerView searchResults;
@@ -71,6 +72,7 @@ public class SpecificAirportActivity extends AppCompatActivity implements OnAirp
                     Intent intent = new Intent(this, AirportsDetailActivity.class);
                     intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition);
                     intent.putExtra(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(mAirports));
+                    intent.putExtra(Constants.KEY_SOURCE, mSource);
                     startActivity(intent);
                 }
             }
@@ -93,14 +95,16 @@ public class SpecificAirportActivity extends AppCompatActivity implements OnAirp
         if (mPosition != null && mAirports != null) {
             outState.putInt(Constants.EXTRA_KEY_POSITION, mPosition);
             outState.putParcelable(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(mAirports));
+            outState.putString(Constants.KEY_SOURCE, mSource);
         }
 
     }
 
     @Override
-    public void onAiportSelected(Integer position, ArrayList<AirportsByCountry> airports) {
+    public void onAiportSelected(Integer position, ArrayList<AirportsByCountry> airports, String source) {
         mPosition = position;
         mAirports = airports;
+        mSource = source;
 
     }
 //

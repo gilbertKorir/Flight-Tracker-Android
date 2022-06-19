@@ -44,19 +44,20 @@ public class AirportDetailFragment extends Fragment implements View.OnClickListe
     private ArrayList<AirportsByCountry> mAirports;
     private  AirportsByCountry mAirport;
     private int mPosition;
+    private String mSource;
 
     public AirportDetailFragment() {
         // Required empty public constructor
     }
 
-    public static AirportDetailFragment newInstance(ArrayList<AirportsByCountry> airports, Integer position) {
+    public static AirportDetailFragment newInstance(ArrayList<AirportsByCountry> airports, Integer position, String source) {
         AirportDetailFragment airportDetailFragment = new AirportDetailFragment();
         Bundle args = new Bundle();
 
         args.putParcelable(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(airports));
         args.putInt(Constants.EXTRA_KEY_POSITION, position);
-
         airportDetailFragment.setArguments(args);
+        args.putString(Constants.KEY_SOURCE, source);
         return airportDetailFragment;
     }
 
@@ -68,6 +69,7 @@ public class AirportDetailFragment extends Fragment implements View.OnClickListe
             mAirports = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_AIRPORTS));
             mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
             mAirport = mAirports.get(mPosition);
+            mSource = getArguments().getString(Constants.KEY_SOURCE);
         }
     }
 
@@ -76,6 +78,13 @@ public class AirportDetailFragment extends Fragment implements View.OnClickListe
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_airport_detail, container, false);
         ButterKnife.bind(this, view);
+
+        if (mSource.equals(Constants.SOURCE_SAVED)) {
+            mSaveAirport.setVisibility(View.GONE);
+        } else {
+            // This line of code should already exist. Make sure it now resides in this conditional:
+            mSaveAirport.setOnClickListener(this);
+        }
 
         Picasso.get().load("https://www.nationsonline.org/gallery/USA/Dallas-Fort-Worth-International-Airport-Terminal-D.jpg").into(mImageview);
         mViewairport.setText(mAirport.getName());

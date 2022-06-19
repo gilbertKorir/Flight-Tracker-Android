@@ -23,6 +23,7 @@ public class AirportsDetailActivity extends AppCompatActivity {
     @BindView(R.id.viewPager) ViewPager mViewPager;
     private AiportPageAdapter adapterViewPager;
     ArrayList<AirportsByCountry> mAirports = new ArrayList<>();
+    private String mSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,9 @@ public class AirportsDetailActivity extends AppCompatActivity {
 
         mAirports = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_AIRPORTS));
         int startingPosition = getIntent().getIntExtra("position", 0);
-//        int startingPosition = getIntent().getIntExtra("position", 0);
+        mSource = getIntent().getStringExtra(Constants.KEY_SOURCE);
 
-        adapterViewPager = new AiportPageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, mAirports);
+        adapterViewPager = new AiportPageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, mAirports, mSource);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }
