@@ -21,6 +21,7 @@ import com.example.flighttracking.models.portsbycountry.Airport;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
 import com.example.flighttracking.models.portsbycountry.Response;
 import com.example.flighttracking.ui.AirportsDetailActivity;
+import com.example.flighttracking.utils.OnAirportSelectedListener;
 
 import org.parceler.Parcels;
 
@@ -32,12 +33,17 @@ import butterknife.ButterKnife;
 
 public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecyclerAdapter.MyHolder>{
 
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
     private Context context;
     private ArrayList<AirportsByCountry> mairports = new ArrayList<>();
+    private OnAirportSelectedListener mOnAirportSelectedListener;
 
-    public SpecificRecyclerAdapter(Context context, ArrayList<AirportsByCountry> airports) {
+    public SpecificRecyclerAdapter(Context context, ArrayList<AirportsByCountry> airports, OnAirportSelectedListener airportSelectedListener) {
         this.context = context;
         this.mairports = airports;
+        mOnAirportSelectedListener = airportSelectedListener;
     }
 
     @NonNull
@@ -45,7 +51,9 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
     public SpecificRecyclerAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view= layoutInflater.inflate(R.layout.specific,parent,false);
-        return  new MyHolder(view);
+        MyHolder viewHolder = new MyHolder(view, mairports, mOnAirportSelectedListener);
+        return viewHolder;
+//        return  new MyHolder(view);
     }
     @Override
     public void onBindViewHolder(@NonNull SpecificRecyclerAdapter.MyHolder holder, int position) {
@@ -65,7 +73,7 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
         private Context mContext;
         private int mOrientation;
 
-        public MyHolder(@NonNull View itemView) {
+        public MyHolder(@NonNull View itemView, ArrayList<AirportsByCountry> mairports, OnAirportSelectedListener mOnAirportSelectedListener) {
             super(itemView);
             ButterKnife.bind(this,itemView);
             context = itemView.getContext();
@@ -89,6 +97,7 @@ public class SpecificRecyclerAdapter extends RecyclerView.Adapter<SpecificRecycl
         public void onClick(View v) {
             //clicking individual airport
             int itemPosition = getLayoutPosition();
+            mOnAirportSelectedListener.onAiportSelected(itemPosition, mairports);
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(itemPosition);
             } else {

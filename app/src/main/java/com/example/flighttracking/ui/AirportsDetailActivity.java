@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.flighttracking.Constants;
 import com.example.flighttracking.R;
 import com.example.flighttracking.adapters.AiportPageAdapter;
 import com.example.flighttracking.models.portsbycountry.AirportsByCountry;
@@ -30,7 +31,7 @@ public class AirportsDetailActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mAirports = Parcels.unwrap(getIntent().getParcelableExtra("airports"));
+        mAirports = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_AIRPORTS));
         int startingPosition = getIntent().getIntExtra("position", 0);
 //        int startingPosition = getIntent().getIntExtra("position", 0);
 

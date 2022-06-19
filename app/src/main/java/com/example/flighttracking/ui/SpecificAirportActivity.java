@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -30,6 +31,9 @@ import com.example.flighttracking.models.portsbycountry.AirportsSearch;
 import com.example.flighttracking.models.portsbycountry.Response;
 import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
+import com.example.flighttracking.utils.OnAirportSelectedListener;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +43,12 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class SpecificAirportActivity extends AppCompatActivity {
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
-    private String mRecentCountry;
+public class SpecificAirportActivity extends AppCompatActivity implements OnAirportSelectedListener {
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
+//    private String mRecentCountry;
+    private Integer mPosition;
+    ArrayList<AirportsByCountry> mAirports;
 
     private static final String TAG = SpecificAirportActivity.class.getSimpleName();
 //    @BindView(R.id.search_results) RecyclerView searchResults;
@@ -54,6 +60,22 @@ public class SpecificAirportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specific_airport);
+
+        if (savedInstanceState != null) {
+
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                mPosition = savedInstanceState.getInt(Constants.EXTRA_KEY_POSITION);
+                mAirports = Parcels.unwrap(savedInstanceState.getParcelable(Constants.EXTRA_KEY_AIRPORTS));
+
+                if (mPosition != null && mAirports != null) {
+                    Intent intent = new Intent(this, AirportsDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition);
+                    intent.putExtra(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(mAirports));
+                    startActivity(intent);
+                }
+            }
+        }
+
 //        ButterKnife.bind(this);
 
 //        Intent intent = getIntent();
@@ -64,6 +86,23 @@ public class SpecificAirportActivity extends AppCompatActivity {
 //            fetchAirports(mRecentCountry);
 //        }
   }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (mPosition != null && mAirports != null) {
+            outState.putInt(Constants.EXTRA_KEY_POSITION, mPosition);
+            outState.putParcelable(Constants.EXTRA_KEY_AIRPORTS, Parcels.wrap(mAirports));
+        }
+
+    }
+
+    @Override
+    public void onAiportSelected(Integer position, ArrayList<AirportsByCountry> airports) {
+        mPosition = position;
+        mAirports = airports;
+
+    }
 //
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

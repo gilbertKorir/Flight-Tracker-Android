@@ -1,5 +1,6 @@
 package com.example.flighttracking.fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -29,6 +30,7 @@ import com.example.flighttracking.models.portsbycountry.AirportsSearch;
 import com.example.flighttracking.network.AirApi;
 import com.example.flighttracking.network.AirClient;
 import com.example.flighttracking.ui.SpecificAirportActivity;
+import com.example.flighttracking.utils.OnAirportSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +48,17 @@ public class AirportListFragment extends Fragment {
     private SharedPreferences.Editor mEditor;
     private String mRecentAddress;
 
+    private OnAirportSelectedListener mOnAirportSelectedListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mOnAirportSelectedListener = (OnAirportSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + e.getMessage());
+        }
+    }
 
     public AirportListFragment() {
         // Required empty public constructor
@@ -118,7 +131,7 @@ public class AirportListFragment extends Fragment {
 //                    searchResults.setHasFixedSize(true);
                     mAirports = (ArrayList<AirportsByCountry>) response.body().getResponse().getAirportsByCountries();
 
-                    mAdapter = new SpecificRecyclerAdapter(getContext(), mAirports);
+                    mAdapter = new SpecificRecyclerAdapter(getContext(), mAirports, mOnAirportSelectedListener);
                     searchResults.setAdapter(mAdapter);
 //                   myCountryAdapter.setResultList(mList);
                     searchResults.setLayoutManager(new LinearLayoutManager(getActivity()));
