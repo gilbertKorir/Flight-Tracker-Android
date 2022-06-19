@@ -29,7 +29,9 @@ Flight tracker retrieves informartion from the AirLabs API for all the airports 
 
 ## Screenshots
 
-<img src="https://i.postimg.cc/hPC3JZNS/scr2.png" alt="Home" width="400"><img src="https://i.postimg.cc/FRgThTjX/scr1.png" alt="Home" width="400">
+<img src="https://i.postimg.cc/MTbLPbn0/Whats-App-Image-2022-06-19-at-9-24-25-PM-1.jpg" alt="Home" width="400"><img src="https://i.postimg.cc/jdj1cftN/Whats-App-Image-2022-06-19-at-9-24-23-PM.jpg" alt="Home" width="400"></br>
+<img src="https://i.postimg.cc/MH6FhMBC/Whats-App-Image-2022-06-19-at-9-24-25-PM.jpg" alt="Home" width="400"><img src="https://i.postimg.cc/bYgM1gcp/Whats-App-Image-2022-06-19-at-9-24-24-PM-1.jpg" alt="Home" width="400"></br>
+<img src="https://i.postimg.cc/5NkRRt2r/Whats-App-Image-2022-06-19-at-9-24-24-PM.jpg" alt="Home" width="400"><img src="https://i.postimg.cc/zvxc5zSV/Whats-App-Image-2022-06-19-at-9-24-23-PM-1.jpg" alt="Home" width="400">
 
 ### Prerequisites
 
