@@ -5,15 +5,17 @@ Flight tracker retrieves informartion from the AirLabs API for all the airports 
 - [Gilbert Korir](https://github.com/gilbertKorir)
 
 ## Features
+* Sign up/Login
+* view airports with their detailed informations.
 * Search the available airports by countries.
-* Booking a flight.
-* Rate the airport.
+* save the airport.
+* Book a flight.
+* check the status of your flight.
 
 
 ## Upcoming Features
-* Intergrating the Firebase database.
-* Setting the user authentications.
-* Configuring the book flight form
+* Adding a camera utilization.
+* Configuring the book flight form.
 
 ## Getting Started
 
@@ -25,8 +27,9 @@ Flight tracker retrieves informartion from the AirLabs API for all the airports 
 * Click on the start register button
 * Log in and select the events as many as possible.
 
-<img src="images/crayons.jpg" width="200"> <img src="images/crisps.jpg" width="200">
+## Screenshots
 
+<img src="https://i.postimg.cc/hPC3JZNS/scr2.png" alt="Home" width="400"><img src="https://i.postimg.cc/FRgThTjX/scr1.png" alt="Home" width="400">
 
 ### Prerequisites
 
@@ -49,13 +52,44 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 }
 ```
-### Testing
+### Dependencies and Testing
 
-* androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-* androidTestImplementation 'androidx.test:rules:1.2.0'
-* androidTestImplementation 'androidx.test:runner:1.2.0'
-* androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-* testImplementation 'org.robolectric:robolectric:4.3.1'
+<details>
+  <summary> Check the dependencies here.</summary>
+
+```
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+//    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    //parceler
+    implementation 'org.parceler:parceler-api:1.1.12'
+    annotationProcessor 'org.parceler:parceler:1.1.12'
+    //test0'
+    implementation platform('com.google.firebase:firebase-bom:26.4.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-database'
+    //firebase ui
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+    //auth
+    implementation 'com.google.firebase:firebase-auth'
+
+//Robolectric dependencies
+testImplementation 'org.robolectric:robolectric:4.8.1'
+}
+```
+</details>
 
 
 ## Support and contact details
