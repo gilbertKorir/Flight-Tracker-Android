@@ -29,9 +29,9 @@ Flight tracker retrieves informartion from the AirLabs API for all the airports 
 
 ## Screenshots
 
-<img src="https://i.postimg.cc/MTbLPbn0/Whats-App-Image-2022-06-19-at-9-24-25-PM-1.jpg" alt="Home" width="300" height="500">&nbsp;&nbsp;<img src="https://i.postimg.cc/jdj1cftN/Whats-App-Image-2022-06-19-at-9-24-23-PM.jpg" alt="Home" width="300" height="500></br>
-<img src="https://i.postimg.cc/MH6FhMBC/Whats-App-Image-2022-06-19-at-9-24-25-PM.jpg" alt="Home" width="300" height="500>&nbsp;&nbsp;<img src="https://i.postimg.cc/bYgM1gcp/Whats-App-Image-2022-06-19-at-9-24-24-PM-1.jpg" alt="Home" width="300" height="500></br>
-<img src="https://i.postimg.cc/5NkRRt2r/Whats-App-Image-2022-06-19-at-9-24-24-PM.jpg" alt="Home" width="300" height="500>&nbsp;&nbsp;<img src="https://i.postimg.cc/zvxc5zSV/Whats-App-Image-2022-06-19-at-9-24-23-PM-1.jpg" alt="Home" width="300" height="500>
+<img src="https://i.postimg.cc/MTbLPbn0/Whats-App-Image-2022-06-19-at-9-24-25-PM-1.jpg" alt="Home" width="300" height="500">&nbsp;&nbsp;<img src="https://i.postimg.cc/jdj1cftN/Whats-App-Image-2022-06-19-at-9-24-23-PM.jpg" alt="Home" width="300" height="500"></br>
+<img src="https://i.postimg.cc/MH6FhMBC/Whats-App-Image-2022-06-19-at-9-24-25-PM.jpg" alt="Home" width="300" height="500">&nbsp;&nbsp;<img src="https://i.postimg.cc/bYgM1gcp/Whats-App-Image-2022-06-19-at-9-24-24-PM-1.jpg" alt="Home" width="300" height="500"></br>
+<img src="https://i.postimg.cc/5NkRRt2r/Whats-App-Image-2022-06-19-at-9-24-24-PM.jpg" alt="Home" width="300" height="500">&nbsp;&nbsp;<img src="https://i.postimg.cc/zvxc5zSV/Whats-App-Image-2022-06-19-at-9-24-23-PM-1.jpg" alt="Home" width="300" height="500">
 
 ### Prerequisites
 
